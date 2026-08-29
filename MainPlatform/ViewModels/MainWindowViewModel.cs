@@ -170,6 +170,7 @@ namespace MainPlatform.ViewModels
         public void SelectMenu(Menu menu)
         {
             if (menu == null) return;
+            if (CurrentMenu == menu) return;
 
             CurrentMenu = menu;
             foreach (var m in Menus)
@@ -185,7 +186,7 @@ namespace MainPlatform.ViewModels
 
             if (Pages.Count > 0)
             {
-                _currentTab = null; // 强制触发 setter，记录历史
+                //_currentTab = null; // 强制触发 setter，记录历史
                 CurrentTab = Pages[0];
             }
             UpdatePath();
