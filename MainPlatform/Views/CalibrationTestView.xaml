@@ -1,0 +1,31 @@
+<UserControl x:Class="MainPlatform.Views.CalibrationTestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MainPlatform.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900"
+             Background="#0B1220">
+    <Grid>
+        <Border Margin="20" Background="#101B2B" CornerRadius="16" BorderBrush="#1E293B" BorderThickness="1">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="48,40">
+                <TextBlock Text="&#xE90F;" FontFamily="Segoe MDL2 Assets" FontSize="52" Foreground="#2563EB" HorizontalAlignment="Center"/>
+                <TextBlock Text="校准测试" FontSize="28" FontWeight="Bold" Foreground="#F8FAFC" HorizontalAlignment="Center" Margin="0,18,0,0"/>
+                <Border Background="#16233A" CornerRadius="6" Padding="14,5" Margin="0,12,0,0" HorizontalAlignment="Center">
+                    <TextBlock Text="设备设定" FontSize="12" Foreground="#38BDF8"/>
+                </Border>
+                <TextBlock Text="焊接速度 / 打火速度 / 断丝速度 / 加热功率 / 留尾模式 / 水平锁紧 / 垂直锁紧 / 力校准 / 力测试 / 超声校准 / 初始化 / 序列号"
+                           FontSize="13.5" Foreground="#94A3B8" TextWrapping="Wrap" TextAlignment="Center"
+                           MaxWidth="640" LineHeight="22" Margin="0,16,0,0"/>
+                <Border Margin="0,28,0,0" BorderBrush="#334155" BorderThickness="1" CornerRadius="10"
+                        Padding="30,16" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE7BA;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#F59E0B" VerticalAlignment="Center"/>
+                        <TextBlock Text="该界面功能开发中 · 此处为占位符" Foreground="#64748B" FontSize="13" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

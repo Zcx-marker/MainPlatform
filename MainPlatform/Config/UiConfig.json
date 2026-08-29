@@ -1,0 +1,72 @@
+{
+  "appTitle": "键合机控制平台",
+  "appSubTitle": "Equipment Host Control Platform",
+  "menuList": [
+    {
+      "key": "Main",
+      "displayName": "制程执行",
+      "icon": "home",
+      "subMenuList": 
+      [
+        {
+          "key": "Overview",
+          "displayName": "总览",
+          "icon": "viewdashboard",
+          "viewModel": "MainPlatform.ViewModels.OverviewViewModel"
+        }
+      ]
+    },
+    {
+      "key": "Process",
+      "displayName": "制程编程",
+      "icon": "process",
+      "subMenuList": 
+      [
+        {
+          "key": "JobRecipe",
+          "displayName": "焊点参数",
+          "icon": "list",
+          "viewModel": "MainPlatform.ViewModels.HandianViewModel"
+        },
+        {
+          "key": "ProcessRecipe",
+          "displayName": "弧形参数",
+          "icon": "list",
+          "viewModel": "MainPlatform.ViewModels.HuXingViewModel"
+        },
+        {
+          "key": "AlarmGroup",
+          "displayName": "尾丝/球形参数",
+          "icon": "list",
+          "viewModel": "MainPlatform.ViewModels.WeiSiQiuXingViewModel"
+        }
+      ]
+    },
+    {
+      "key": "Maintenance",
+      "displayName": "设备设定",
+      "icon": "tools",
+      "subMenuList": 
+      [
+        {
+          "key": "Mode",
+          "displayName": "模式",
+          "icon": "manual",
+          "viewModel": "MainPlatform.ViewModels.ModeViewModel"
+        },
+        {
+          "key": "Calibration",
+          "displayName": "校准测试",
+          "icon": "list",
+          "viewModel": "MainPlatform.ViewModels.CalibrationTestViewModel"
+        },
+        {
+          "key": "Plan",
+          "displayName": "计划管理",
+          "icon": "list",
+          "viewModel": "MainPlatform.ViewModels.PlanViewModel"
+        }
+      ]
+    }
+  ]
+}
