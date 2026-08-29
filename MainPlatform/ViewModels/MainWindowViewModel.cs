@@ -143,6 +143,9 @@ namespace MainPlatform.ViewModels
                 SelectMenu(Menus[0]);
         }
 
+        /// <summary>
+        /// 加载UI界面配置文件
+        /// </summary>
         private void LoadConfiguration()
         {
             var config = ConfigManager.Instance.UiConfig;
