@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37614.0 d17.14
+VisualStudioVersion = 17.14.37614.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainPlatform", "MainPlatform\MainPlatform.csproj", "{9312870A-E697-4EB2-B8E0-2DF66D721F14}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbModels", "DbModels\DbModels.csproj", "{6AECE6B8-B962-4783-82CB-C2CE73A1A420}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{99FC2445-A081-43A8-B5DB-8FC10C3DA3C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogModule", "LogModule\LogModule.csproj", "{452A1110-193D-41B6-A63E-F4EC72FD2F6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{99FC2445-A081-43A8-B5DB-8FC10C3DA3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99FC2445-A081-43A8-B5DB-8FC10C3DA3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99FC2445-A081-43A8-B5DB-8FC10C3DA3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{452A1110-193D-41B6-A63E-F4EC72FD2F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{452A1110-193D-41B6-A63E-F4EC72FD2F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{452A1110-193D-41B6-A63E-F4EC72FD2F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{452A1110-193D-41B6-A63E-F4EC72FD2F6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

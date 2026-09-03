@@ -1,31 +1,349 @@
 <UserControl x:Class="MainPlatform.Views.PlanView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MainPlatform.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="900"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="580" d:DesignWidth="900"
              Background="#0B1220">
-    <Grid>
-        <Border Margin="20" Background="#101B2B" CornerRadius="16" BorderBrush="#1E293B" BorderThickness="1">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="48,40">
-                <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" FontSize="52" Foreground="#2563EB" HorizontalAlignment="Center"/>
-                <TextBlock Text="计划管理" FontSize="28" FontWeight="Bold" Foreground="#F8FAFC" HorizontalAlignment="Center" Margin="0,18,0,0"/>
-                <Border Background="#16233A" CornerRadius="6" Padding="14,5" Margin="0,12,0,0" HorizontalAlignment="Center">
-                    <TextBlock Text="设备设定" FontSize="12" Foreground="#38BDF8"/>
-                </Border>
-                <TextBlock Text="生产计划的新建 / 编辑 / 删除 / 排产 / 执行状态跟踪 / 产量与完成进度统计"
-                           FontSize="13.5" Foreground="#94A3B8" TextWrapping="Wrap" TextAlignment="Center"
-                           MaxWidth="640" LineHeight="22" Margin="0,16,0,0"/>
-                <Border Margin="0,28,0,0" BorderBrush="#334155" BorderThickness="1" CornerRadius="10"
-                        Padding="30,16" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE7BA;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#F59E0B" VerticalAlignment="Center"/>
-                        <TextBlock Text="该界面功能开发中 · 此处为占位符" Foreground="#64748B" FontSize="13" Margin="10,0,0,0" VerticalAlignment="Center"/>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MainPlatform;component/Styles/ParameterPageStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+        <!-- 表格表头 -->
+        <Style x:Key="TableHeader" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="#64748B"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <!-- 表格单元格 -->
+        <Style x:Key="TableCell" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#CBD5E1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <!-- 计划列表项 -->
+        <Style x:Key="PlanItem" TargetType="Border">
+            <Setter Property="Background" Value="#0D1726"/>
+            <Setter Property="BorderBrush" Value="#1E293B"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style x:Key="PlanItemActive" TargetType="Border" BasedOn="{StaticResource PlanItem}">
+            <Setter Property="Background" Value="#0E2A4A"/>
+            <Setter Property="BorderBrush" Value="#2563EB"/>
+        </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="14,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 页面信息条 -->
+        <Border Grid.Row="0" Style="{StaticResource PageInfoBar}">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="设备设定" Foreground="#475569" FontSize="12" VerticalAlignment="Center"/>
+                    <TextBlock Text="  /  " Foreground="#334155" FontSize="12" VerticalAlignment="Center"/>
+                    <TextBlock Text="计划管理" Foreground="#38BDF8" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Border Background="#0D1726" BorderBrush="#334155" BorderThickness="1" CornerRadius="6"
+                            Height="28" Width="180" Margin="0,0,10,0">
+                        <Grid>
+                            <TextBlock Text="搜索计划..." Foreground="#475569" FontSize="11" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBlock Text="🔍" Foreground="#475569" FontSize="11" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        </Grid>
+                    </Border>
+                    <Button Style="{StaticResource ActionButton}" Content="+ 新建计划" Height="28" FontSize="12"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- 主体：计划列表 + 焊点序列 -->
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 左侧：计划列表 -->
+            <Border Grid.Column="0" Style="{StaticResource SectionCard}" Margin="0,0,8,0">
+                <StackPanel>
+                    <StackPanel Style="{StaticResource SectionTitle}">
+                        <Border Style="{StaticResource SectionTitleBar}"/>
+                        <TextBlock Style="{StaticResource SectionTitleText}" Text="计划列表"/>
+                        <TextBlock Text="(5)" Foreground="#475569" FontSize="11" VerticalAlignment="Center" Margin="8,0,0,0"/>
                     </StackPanel>
-                </Border>
-            </StackPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="420">
+                        <StackPanel>
+                            <!-- 选中项 -->
+                            <Border Style="{StaticResource PlanItemActive}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="wsd" Foreground="#38BDF8" FontSize="13" FontWeight="SemiBold"/>
+                                        <TextBlock Text="Q弧 · 20焊点 · 压球" Foreground="#64748B" FontSize="10" Margin="0,2,0,0"/>
+                                    </StackPanel>
+                                    <Border Grid.Column="1" Background="#166534" CornerRadius="3" Padding="5,2" VerticalAlignment="Top">
+                                        <TextBlock Text="使用中" Foreground="#22C55E" FontSize="9"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <Border Style="{StaticResource PlanItem}">
+                                <StackPanel>
+                                    <TextBlock Text="test_001" Foreground="#E2E8F0" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="标准弧 · 12焊点 · 压球" Foreground="#64748B" FontSize="10" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource PlanItem}">
+                                <StackPanel>
+                                    <TextBlock Text="IC_card_v2" Foreground="#E2E8F0" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="低弧 · 48焊点 · 楔焊" Foreground="#64748B" FontSize="10" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource PlanItem}">
+                                <StackPanel>
+                                    <TextBlock Text="LED_0805" Foreground="#E2E8F0" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Q弧 · 4焊点 · 压球" Foreground="#64748B" FontSize="10" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource PlanItem}">
+                                <StackPanel>
+                                    <TextBlock Text="backup_old" Foreground="#64748B" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="标准弧 · 8焊点 · 压球" Foreground="#475569" FontSize="10" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+
+            <!-- 右侧：焊点序列表 -->
+            <Border Grid.Column="1" Style="{StaticResource SectionCard}" Margin="8,0,0,0">
+                <StackPanel>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Style="{StaticResource SectionTitle}">
+                            <Border Style="{StaticResource SectionTitleBar}"/>
+                            <TextBlock Style="{StaticResource SectionTitleText}" Text="焊点序列 — wsd"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <Button Style="{StaticResource GhostButton}" Content="↑ 上移" Height="28" FontSize="11" Margin="0,0,6,0" Padding="10,0"/>
+                            <Button Style="{StaticResource GhostButton}" Content="↓ 下移" Height="28" FontSize="11" Margin="0,0,6,0" Padding="10,0"/>
+                            <Button Style="{StaticResource GhostButton}" Content="+ 添加" Height="28" FontSize="11" Padding="10,0"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- 表头 -->
+                    <Border Background="#0D1726" CornerRadius="6,6,0,0" Padding="0,8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Style="{StaticResource TableHeader}" Text="序号"/>
+                            <TextBlock Grid.Column="1" Style="{StaticResource TableHeader}" Text="X 坐标 (um)"/>
+                            <TextBlock Grid.Column="2" Style="{StaticResource TableHeader}" Text="Y 坐标 (um)"/>
+                            <TextBlock Grid.Column="3" Style="{StaticResource TableHeader}" Text="类型"/>
+                            <TextBlock Grid.Column="4" Style="{StaticResource TableHeader}" Text="压力(g)"/>
+                            <TextBlock Grid.Column="5" Style="{StaticResource TableHeader}" Text="超声(%)"/>
+                            <TextBlock Grid.Column="6" Style="{StaticResource TableHeader}" Text="时间(ms)"/>
+                            <TextBlock Grid.Column="7" Style="{StaticResource TableHeader}" Text="状态"/>
+                        </Grid>
+                    </Border>
+                    <!-- 表体 -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="340">
+                        <StackPanel>
+                            <!-- Row 1 (selected) -->
+                            <Border Background="#0E2A4A" BorderBrush="#2563EB" BorderThickness="1,0,1,0" Padding="0,7">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource TableCell}" Text="1" Foreground="#38BDF8" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1" Style="{StaticResource TableCell}" Text="19377"/>
+                                    <TextBlock Grid.Column="2" Style="{StaticResource TableCell}" Text="31547"/>
+                                    <TextBlock Grid.Column="3" Style="{StaticResource TableCell}" Text="压球"/>
+                                    <TextBlock Grid.Column="4" Style="{StaticResource TableCell}" Text="30"/>
+                                    <TextBlock Grid.Column="5" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="6" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="7" Style="{StaticResource TableCell}" Text="✓" Foreground="#22C55E"/>
+                                </Grid>
+                            </Border>
+                            <!-- Row 2 -->
+                            <Border Background="#0D1726" Padding="0,7">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource TableCell}" Text="2"/>
+                                    <TextBlock Grid.Column="1" Style="{StaticResource TableCell}" Text="19507"/>
+                                    <TextBlock Grid.Column="2" Style="{StaticResource TableCell}" Text="31547"/>
+                                    <TextBlock Grid.Column="3" Style="{StaticResource TableCell}" Text="楔焊"/>
+                                    <TextBlock Grid.Column="4" Style="{StaticResource TableCell}" Text="45"/>
+                                    <TextBlock Grid.Column="5" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="6" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="7" Style="{StaticResource TableCell}" Text="✓" Foreground="#22C55E"/>
+                                </Grid>
+                            </Border>
+                            <!-- Row 3 -->
+                            <Border Background="#0D1726" Padding="0,7">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource TableCell}" Text="3"/>
+                                    <TextBlock Grid.Column="1" Style="{StaticResource TableCell}" Text="19637"/>
+                                    <TextBlock Grid.Column="2" Style="{StaticResource TableCell}" Text="31547"/>
+                                    <TextBlock Grid.Column="3" Style="{StaticResource TableCell}" Text="压球"/>
+                                    <TextBlock Grid.Column="4" Style="{StaticResource TableCell}" Text="30"/>
+                                    <TextBlock Grid.Column="5" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="6" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="7" Style="{StaticResource TableCell}" Text="✓" Foreground="#22C55E"/>
+                                </Grid>
+                            </Border>
+                            <!-- Row 4 -->
+                            <Border Background="#0D1726" Padding="0,7">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource TableCell}" Text="4"/>
+                                    <TextBlock Grid.Column="1" Style="{StaticResource TableCell}" Text="19767"/>
+                                    <TextBlock Grid.Column="2" Style="{StaticResource TableCell}" Text="31547"/>
+                                    <TextBlock Grid.Column="3" Style="{StaticResource TableCell}" Text="楔焊"/>
+                                    <TextBlock Grid.Column="4" Style="{StaticResource TableCell}" Text="45"/>
+                                    <TextBlock Grid.Column="5" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="6" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="7" Style="{StaticResource TableCell}" Text="—" Foreground="#475569"/>
+                                </Grid>
+                            </Border>
+                            <!-- Row 5 -->
+                            <Border Background="#0D1726" Padding="0,7">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource TableCell}" Text="5"/>
+                                    <TextBlock Grid.Column="1" Style="{StaticResource TableCell}" Text="19897"/>
+                                    <TextBlock Grid.Column="2" Style="{StaticResource TableCell}" Text="31547"/>
+                                    <TextBlock Grid.Column="3" Style="{StaticResource TableCell}" Text="压球"/>
+                                    <TextBlock Grid.Column="4" Style="{StaticResource TableCell}" Text="30"/>
+                                    <TextBlock Grid.Column="5" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="6" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="7" Style="{StaticResource TableCell}" Text="—" Foreground="#475569"/>
+                                </Grid>
+                            </Border>
+                            <!-- Row 6 -->
+                            <Border Background="#0D1726" Padding="0,7">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource TableCell}" Text="6"/>
+                                    <TextBlock Grid.Column="1" Style="{StaticResource TableCell}" Text="20027"/>
+                                    <TextBlock Grid.Column="2" Style="{StaticResource TableCell}" Text="31547"/>
+                                    <TextBlock Grid.Column="3" Style="{StaticResource TableCell}" Text="楔焊"/>
+                                    <TextBlock Grid.Column="4" Style="{StaticResource TableCell}" Text="45"/>
+                                    <TextBlock Grid.Column="5" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="6" Style="{StaticResource TableCell}" Text="120"/>
+                                    <TextBlock Grid.Column="7" Style="{StaticResource TableCell}" Text="—" Foreground="#475569"/>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!-- 表尾统计 -->
+                    <Border Background="#0D1726" CornerRadius="0,0,6,6" Padding="10,6" BorderBrush="#1E293B" BorderThickness="0,1,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="共 20 个焊点" Foreground="#64748B" FontSize="11" Margin="0,0,16,0"/>
+                            <TextBlock Text="已完成 3" Foreground="#22C55E" FontSize="11" Margin="0,0,16,0"/>
+                            <TextBlock Text="待焊接 17" Foreground="#F59E0B" FontSize="11"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- 操作栏 -->
+        <Border Grid.Row="2" Background="#101B2B" CornerRadius="8" Padding="12,8" BorderBrush="#1E293B" BorderThickness="1">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button Style="{StaticResource GhostButton}" Content="导入" Margin="0,0,8,0"/>
+                    <Button Style="{StaticResource GhostButton}" Content="导出" Margin="0,0,8,0"/>
+                    <Button Style="{StaticResource GhostButton}" Content="复制计划"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource GhostButton}" Content="删除" Margin="0,0,8,0"/>
+                    <Button Style="{StaticResource ActionButton}" Content="保存计划"/>
+                </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

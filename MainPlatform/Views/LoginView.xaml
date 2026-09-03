@@ -9,6 +9,7 @@
         xmlns:conv="clr-namespace:MainPlatform.Converters"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:cal="http://www.caliburnproject.org"
+        d:DataContext="{d:DesignInstance Type=vm:LoginViewModel}"
         mc:Ignorable="d"
         Title="登录" Height="768" Width="1024"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
@@ -16,6 +17,7 @@
 
     <Window.Resources>
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <conv:User2UserName x:Key="User2UserName"/>
 
         <Style x:Key="LoginTextBox" TargetType="TextBox">
             <Setter Property="Height" Value="44"/>
@@ -103,6 +105,88 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="LoginComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="44"/>
+            <Setter Property="Padding" Value="12,0,36,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#E2E8F0"/>
+            <Setter Property="Background" Value="#0D1726"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="MaxDropDownHeight" Value="240"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid VerticalAlignment="Stretch">
+                            <ToggleButton x:Name="ToggleButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClickMode="Press" Focusable="False"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border Background="#0D1726"
+                                                BorderBrush="#334155"
+                                                BorderThickness="1"
+                                                CornerRadius="6"/>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              IsHitTestVisible="False"/>
+                            <Path Data="M 0 0 L 4 4 L 8 0" Stroke="#94A3B8" StrokeThickness="1.5"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center"
+                                  Margin="0,0,12,0" IsHitTestVisible="False"/>
+                            <Popup x:Name="PART_Popup" AllowsTransparency="True"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" StaysOpen="False">
+                                <Border MinWidth="{TemplateBinding ActualWidth}"
+                                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                        Background="#101B2B" BorderBrush="#334155"
+                                        BorderThickness="1" CornerRadius="6" Margin="0,4,0,0">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter Margin="6"/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ToggleButton" Property="BorderBrush" Value="#475569"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter TargetName="ToggleButton" Property="BorderBrush" Value="#2563EB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LoginComboBoxItem" TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="#E2E8F0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#2563EB"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -156,21 +240,65 @@
 
                         <StackPanel Margin="0,40,0,0">
                             <TextBlock Text="用户名" Foreground="#94A3B8" FontSize="12" Margin="0,0,0,8"/>
-                            <TextBox Style="{StaticResource LoginTextBox}"
-                                     Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox Style="{StaticResource LoginComboBox}"
+                                      ItemContainerStyle="{StaticResource LoginComboBoxItem}"
+                                      IsEditable="False"
+                                      
+                                      IsReadOnly="False" 
+                                      ItemsSource="{Binding UserList}"
+                                      SelectedItem="{Binding CurrentUser}"
+                                      SelectedValuePath="UserName"
+                                      SelectedValue="{Binding Username}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding UserName}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                         </StackPanel>
 
                         <StackPanel Margin="0,20,0,0">
                             <TextBlock Text="密码" Foreground="#94A3B8" FontSize="12" Margin="0,0,0,8"/>
                             <Grid>
-                                <PasswordBox Style="{StaticResource LoginPasswordBox}"/>
+                                <PasswordBox Style="{StaticResource LoginPasswordBox}"
+                                             conv:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             conv:PasswordBoxHelper.IsMonitoring="True"/>
                                 <TextBox Style="{StaticResource LoginTextBox}"
                                          Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                                           Visibility="{Binding IsPasswordVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                 <ToggleButton IsChecked="{Binding IsPasswordVisible}" HorizontalAlignment="Right"
-                                              VerticalAlignment="Center" Margin="0,0,10,0" Background="Transparent"
-                                              BorderThickness="0" Foreground="#64748B" Cursor="Hand">
-                                    <TextBlock Text="&#xE7B3;" FontFamily="Segoe MDL2 Assets" FontSize="15"/>
+                                              VerticalAlignment="Center" Margin="0,0,10,0" Cursor="Hand">
+                                    <ToggleButton.Style>
+                                        <Style TargetType="ToggleButton">
+                                            <Setter Property="ToolTip" Value="显示密码"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="ToggleButton">
+                                                        <Grid Width="24" Height="24" Background="Transparent">
+                                                            <TextBlock Text="&#xE7B3;" FontFamily="Segoe MDL2 Assets"
+                                                                       FontSize="15" Foreground="#64748B"
+                                                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            <Line x:Name="Slash" X1="21" Y1="3" X2="3" Y2="21"
+                                                                  Stroke="#64748B" StrokeThickness="1.8"
+                                                                  StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                                                                  Visibility="Collapsed"/>
+                                                        </Grid>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsChecked" Value="False">
+                                                                <Setter TargetName="Slash" Property="Visibility" Value="Visible"/>
+                                                                <Setter TargetName="Slash" Property="Stroke" Value="#38BDF8"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="ToolTip" Value="隐藏密码"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ToggleButton.Style>
                                 </ToggleButton>
                             </Grid>
                         </StackPanel>

@@ -1,30 +1,225 @@
 <UserControl x:Class="MainPlatform.Views.HuXingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MainPlatform.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="900"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="580" d:DesignWidth="900"
              Background="#0B1220">
-    <Grid>
-        <Border Margin="20" Background="#101B2B" CornerRadius="16" BorderBrush="#1E293B" BorderThickness="1">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="48,40">
-                <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" FontSize="52" Foreground="#2563EB" HorizontalAlignment="Center"/>
-                <TextBlock Text="弧形参数" FontSize="28" FontWeight="Bold" Foreground="#F8FAFC" HorizontalAlignment="Center" Margin="0,18,0,0"/>
-                <Border Background="#16233A" CornerRadius="6" Padding="14,5" Margin="0,12,0,0" HorizontalAlignment="Center">
-                    <TextBlock Text="制程编程" FontSize="12" Foreground="#38BDF8"/>
-                </Border>
-                <TextBlock Text="线弧类型 / 反转距离 / 反转高度 / 反转角度 / 线长补偿 / 弧形角度 / 拉弧轨迹 / 回转距离 / 弧顶线夹关闭 / 预设焊点位置 / 动作阈值"
-                           FontSize="13.5" Foreground="#94A3B8" TextWrapping="Wrap" TextAlignment="Center"
-                           MaxWidth="640" LineHeight="22" Margin="0,16,0,0"/>
-                <Border Margin="0,28,0,0" BorderBrush="#334155" BorderThickness="1" CornerRadius="10"
-                        Padding="30,16" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE7BA;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#F59E0B" VerticalAlignment="Center"/>
-                        <TextBlock Text="该界面功能开发中 · 此处为占位符" Foreground="#64748B" FontSize="13" Margin="10,0,0,0" VerticalAlignment="Center"/>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MainPlatform;component/Styles/ParameterPageStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="14,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 页面信息条 -->
+        <Border Grid.Row="0" Style="{StaticResource PageInfoBar}">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="制程编程" Foreground="#475569" FontSize="12" VerticalAlignment="Center"/>
+                    <TextBlock Text="  /  " Foreground="#334155" FontSize="12" VerticalAlignment="Center"/>
+                    <TextBlock Text="弧形参数" Foreground="#38BDF8" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                </StackPanel>
+                <TextBlock Text="程序: wsd" Foreground="#64748B" FontSize="11" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- 主体：参数 + 示意图 -->
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 左侧参数区 -->
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="0,0,8,0">
+                <StackPanel>
+                    <!-- 线弧设置 -->
+                    <Border Style="{StaticResource SectionCard}" Margin="0,0,0,10">
+                        <StackPanel>
+                            <StackPanel Style="{StaticResource SectionTitle}">
+                                <Border Style="{StaticResource SectionTitleBar}"/>
+                                <TextBlock Style="{StaticResource SectionTitleText}" Text="线弧设置"/>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                                    <TextBlock Style="{StaticResource ParamLabel}" Text="线弧类型:" Width="84"/>
+                                    <ComboBox Style="{StaticResource DarkComboBox}" SelectedIndex="0">
+                                        <ComboBoxItem Content="Q弧"/>
+                                        <ComboBoxItem Content="标准弧"/>
+                                        <ComboBoxItem Content="低弧"/>
+                                        <ComboBoxItem Content="自定义"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                                    <TextBlock Style="{StaticResource ParamLabel}" Text="反转高度:" Width="84"/>
+                                    <TextBox Style="{StaticResource ParamInput}" Text="150"/>
+                                    <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                                    <TextBlock Style="{StaticResource ParamRange}" Text="(0~6000)"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 反转与补偿 -->
+                    <Border Style="{StaticResource SectionCard}" Margin="0,0,0,10">
+                        <StackPanel>
+                            <StackPanel Style="{StaticResource SectionTitle}">
+                                <Border Style="{StaticResource SectionTitleBar}"/>
+                                <TextBlock Style="{StaticResource SectionTitleText}" Text="反转与补偿"/>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- 反转距离 -->
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                                    <TextBlock Style="{StaticResource ParamLabel}" Text="反转距离:" Width="84"/>
+                                    <TextBox Style="{StaticResource ParamInput}" Text="150"/>
+                                    <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                                    <TextBlock Style="{StaticResource ParamRange}" Text="(0~3000)"/>
+                                </StackPanel>
+                                <!-- 反转角度（带+号） -->
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                                    <TextBlock Style="{StaticResource ParamLabel}" Text="反转角度:" Width="84"/>
+                                    <Button Style="{StaticResource SignButton}" Content="+"/>
+                                    <TextBox Style="{StaticResource ParamInput}" Text="0" Margin="-1,0,0,0"/>
+                                    <TextBlock Style="{StaticResource ParamUnit}" Text="°"/>
+                                    <TextBlock Style="{StaticResource ParamRange}" Text="(-30~150)"/>
+                                </StackPanel>
+                                <!-- 线长补偿（带-号） -->
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                                    <TextBlock Style="{StaticResource ParamLabel}" Text="线长补偿:" Width="84"/>
+                                    <Button Style="{StaticResource SignButton}" Content="-"/>
+                                    <TextBox Style="{StaticResource ParamInput}" Text="0" Margin="-1,0,0,0"/>
+                                    <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                                    <TextBlock Style="{StaticResource ParamRange}" Text="(±500)"/>
+                                </StackPanel>
+                                <!-- 拉弧轨迹 -->
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                                    <TextBlock Style="{StaticResource ParamLabel}" Text="拉弧轨迹:" Width="84"/>
+                                    <ComboBox Style="{StaticResource DarkComboBox}" SelectedIndex="0">
+                                        <ComboBoxItem Content="圆弧"/>
+                                        <ComboBoxItem Content="直线"/>
+                                        <ComboBoxItem Content="抛物线"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 角度与回转 -->
+                    <Border Style="{StaticResource SectionCard}" Margin="0,0,0,10">
+                        <StackPanel>
+                            <StackPanel Style="{StaticResource SectionTitle}">
+                                <Border Style="{StaticResource SectionTitleBar}"/>
+                                <TextBlock Style="{StaticResource SectionTitleText}" Text="角度与回转"/>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                                    <TextBlock Style="{StaticResource ParamLabel}" Text="弧形角度:" Width="84"/>
+                                    <TextBox Style="{StaticResource ParamInput}" Text="30"/>
+                                    <TextBlock Style="{StaticResource ParamUnit}" Text="°"/>
+                                    <TextBlock Style="{StaticResource ParamRange}" Text="(0~89)"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                                    <TextBlock Style="{StaticResource ParamLabel}" Text="回转距离:" Width="84"/>
+                                    <Button Style="{StaticResource SignButton}" Content="+"/>
+                                    <TextBox Style="{StaticResource ParamInput}" Text="0" Margin="-1,0,0,0"/>
+                                    <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                                    <TextBlock Style="{StaticResource ParamRange}" Text="(±1000)"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 功能开关 -->
+                    <Border Style="{StaticResource SectionCard}">
+                        <StackPanel>
+                            <StackPanel Style="{StaticResource SectionTitle}">
+                                <Border Style="{StaticResource SectionTitleBar}"/>
+                                <TextBlock Style="{StaticResource SectionTitleText}" Text="功能开关"/>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox Grid.Column="0" Style="{StaticResource DarkCheckBox}" Content="弧顶线夹关闭" IsChecked="True" Margin="10,4"/>
+                                <CheckBox Grid.Column="1" Style="{StaticResource DarkCheckBox}" Content="预设焊点位置" Margin="10,4"/>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,8,0,0">
+                                <TextBlock Style="{StaticResource ParamLabel}" Text="动作阈值:" Width="84"/>
+                                <TextBox Style="{StaticResource ParamInput}" Text="10"/>
+                                <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                                <TextBlock Style="{StaticResource ParamRange}" Text="(0~250)"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- 右侧：线弧示意图（扩展） -->
+            <Border Grid.Column="1" Style="{StaticResource SectionCard}" Margin="8,0,0,0">
+                <StackPanel>
+                    <StackPanel Style="{StaticResource SectionTitle}">
+                        <Border Style="{StaticResource SectionTitleBar}"/>
+                        <TextBlock Style="{StaticResource SectionTitleText}" Text="线弧示意"/>
                     </StackPanel>
-                </Border>
+                    <Border Background="#0D1726" CornerRadius="8" Padding="8">
+                        <Canvas Width="240" Height="200">
+                            <!-- 焊盘（第一焊点） -->
+                            <Rectangle Canvas.Left="20" Canvas.Top="160" Width="50" Height="12" Fill="#475569" RadiusX="2"/>
+                            <TextBlock Canvas.Left="22" Canvas.Top="175" Text="1st" Foreground="#64748B" FontSize="9"/>
+                            <!-- 焊盘（第二焊点） -->
+                            <Rectangle Canvas.Left="170" Canvas.Top="160" Width="50" Height="12" Fill="#475569" RadiusX="2"/>
+                            <TextBlock Canvas.Left="175" Canvas.Top="175" Text="2nd" Foreground="#64748B" FontSize="9"/>
+                            <!-- 线弧（Q弧示意） -->
+                            <Path Data="M 45 160 C 45 80 100 40 140 50 C 170 58 195 100 195 160"
+                                  Stroke="#38BDF8" StrokeThickness="2" Fill="Transparent"/>
+                            <!-- 弧顶点 -->
+                            <Ellipse Canvas.Left="136" Canvas.Top="46" Width="8" Height="8" Fill="#F59E0B"/>
+                            <TextBlock Canvas.Left="148" Canvas.Top="42" Text="弧顶" Foreground="#F59E0B" FontSize="9"/>
+                            <!-- 反转点 -->
+                            <Ellipse Canvas.Left="42" Canvas.Top="78" Width="6" Height="6" Fill="#22C55E"/>
+                            <TextBlock Canvas.Left="8" Canvas.Top="70" Text="反转点" Foreground="#22C55E" FontSize="9"/>
+                            <!-- 标注线 -->
+                            <Line X1="45" Y1="160" X2="45" Y2="80" Stroke="#475569" StrokeThickness="1" StrokeDashArray="2,2"/>
+                            <TextBlock Canvas.Left="50" Canvas.Top="115" Text="反转高度" Foreground="#64748B" FontSize="9"/>
+                            <Line X1="45" Y1="160" X2="195" Y2="160" Stroke="#334155" StrokeThickness="1"/>
+                        </Canvas>
+                    </Border>
+                    <TextBlock Text="当前线弧: Q弧" Foreground="#38BDF8" FontSize="12" FontWeight="SemiBold" Margin="0,10,0,2"/>
+                    <TextBlock Text="拉弧轨迹: 圆弧" Foreground="#94A3B8" FontSize="11" Margin="0,2,0,2"/>
+                    <TextBlock Text="弧形角度: 30°" Foreground="#94A3B8" FontSize="11" Margin="0,2,0,2"/>
+                    <TextBlock Text="反转高度: 150 um" Foreground="#94A3B8" FontSize="11" Margin="0,2,0,2"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- 操作栏 -->
+        <Border Grid.Row="2" Background="#101B2B" CornerRadius="8" Padding="12,8" BorderBrush="#1E293B" BorderThickness="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>
+                <Button Style="{StaticResource ActionButton}" Content="保存参数"/>
             </StackPanel>
         </Border>
     </Grid>
