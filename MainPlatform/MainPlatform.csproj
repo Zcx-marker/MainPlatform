@@ -133,21 +133,24 @@
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\User2UserName.cs" />
     <Compile Include="ViewModels\CalibrationTestViewModel.cs" />
-    <Compile Include="ViewModels\HandianViewModel.cs" />
-    <Compile Include="ViewModels\HuXingViewModel.cs" />
+    <Compile Include="ViewModels\QhHandianViewModel.cs" />
+    <Compile Include="ViewModels\QhHuXingViewModel.cs" />
     <Compile Include="ViewModels\ModeViewModel.cs" />
     <Compile Include="ViewModels\OverviewViewModel.cs" />
     <Compile Include="ViewModels\PlanViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\WeiSiQiuXingViewModel.cs" />
+    <Compile Include="ViewModels\QhWeiSiQiuXingViewModel.cs" />
+    <Compile Include="ViewModels\XhHuXingViewModel.cs" />
+    <Compile Include="ViewModels\XhQhHandianViewModel.cs" />
+    <Compile Include="ViewModels\XhWeiSiQiuXingViewModel.cs" />
     <Compile Include="Views\CalibrationTestView.xaml.cs">
       <DependentUpon>CalibrationTestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HandianView.xaml.cs">
-      <DependentUpon>HandianView.xaml</DependentUpon>
+    <Compile Include="Views\QhHandianView.xaml.cs">
+      <DependentUpon>QhHandianView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HuXingView.xaml.cs">
-      <DependentUpon>HuXingView.xaml</DependentUpon>
+    <Compile Include="Views\QhHuXingView.xaml.cs">
+      <DependentUpon>QhHuXingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModeView.xaml.cs">
       <DependentUpon>ModeView.xaml</DependentUpon>
@@ -161,22 +164,35 @@
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WeiSiQiuXingView.xaml.cs">
-      <DependentUpon>WeiSiQiuXingView.xaml</DependentUpon>
+    <Compile Include="Views\QhWeiSiQiuXingView.xaml.cs">
+      <DependentUpon>QhWeiSiQiuXingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\XhHuXingView.xaml.cs">
+      <DependentUpon>XhHuXingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\XhHandianView.xaml.cs">
+      <DependentUpon>XhHandianView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\XhWeiSiQiuXingView.xaml.cs">
+      <DependentUpon>XhWeiSiQiuXingView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\CalibrationTestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HandianView.xaml">
+    <Page Include="Views\QhHandianView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HuXingView.xaml">
+    <Page Include="Views\QhHuXingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LogViewerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +218,9 @@
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LogViewerControl.xaml.cs">
+      <DependentUpon>LogViewerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -222,13 +241,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WeiSiQiuXingView.xaml">
+    <Page Include="Views\QhWeiSiQiuXingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ParameterPageStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\XhHuXingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\XhHandianView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\XhWeiSiQiuXingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +291,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\Users.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\AppConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
@@ -296,6 +330,10 @@
     <ProjectReference Include="..\Service\Service.csproj">
       <Project>{99fc2445-a081-43a8-b5db-8fc10c3da3c6}</Project>
       <Name>Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogModule\LogModule.csproj">
+      <Project>{452a1110-193d-41b6-a63e-f4ec72fd2f6e}</Project>
+      <Name>LogModule</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

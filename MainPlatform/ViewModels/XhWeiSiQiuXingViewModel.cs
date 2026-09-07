@@ -1,4 +1,4 @@
-﻿using Caliburn.Micro;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MainPlatform.ViewModels
 {
-    public class WeiSiQiuXingViewModel:Screen
+    public class XhWeiSiQiuXingViewModel : Screen
     {
     }
 }

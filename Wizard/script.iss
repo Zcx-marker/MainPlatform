@@ -174,8 +174,11 @@ LaunchProgram=启动 %1
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 ; ---------- 安装时创建的目录 ----------
+; 说明：软件运行时会向 Data\scmc.db 写入登录时间/记住密码等数据。
+; 安装目录位于 Program Files 下默认 Users 仅有只读权限，会导致 UserDataService.Update 写库失败、
+; 登录无法进入主界面。故必须为 Data 目录授予 Users 修改(写)权限。
 [Dirs]
-Name: "{app}\Data"; Flags: uninsalwaysuninstall
+Name: "{app}\Data"; Flags: uninsalwaysuninstall; Permissions: users-modify
 
 ; ---------- 打包文件 ----------
 [Files]

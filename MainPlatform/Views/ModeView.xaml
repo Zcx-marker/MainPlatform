@@ -16,29 +16,11 @@
 
     <Grid Margin="14,10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- 页面信息条 -->
-        <Border Grid.Row="0" Style="{StaticResource PageInfoBar}">
-            <Grid>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="设备设定" Foreground="#475569" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBlock Text="  /  " Foreground="#334155" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBlock Text="模式" Foreground="#38BDF8" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Border Style="{StaticResource StatusBadge}" Background="#0E2A1A" Margin="0,0,12,0">
-                        <TextBlock Text="自动模式" Foreground="#22C55E" FontSize="11"/>
-                    </Border>
-                    <TextBlock Text="程序: wsd" Foreground="#64748B" FontSize="11" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10">
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10">
             <StackPanel>
                 <!-- 搜索参数 -->
                 <Border Style="{StaticResource SectionCard}" Margin="0,0,0,10">
@@ -48,53 +30,59 @@
                             <TextBlock Style="{StaticResource SectionTitleText}" Text="搜索参数"/>
                         </StackPanel>
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="初始压力:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="20"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="g"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(5~150)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="触发距离:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="20"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(10~100)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="释放距离:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="20"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(10~100)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="复位高度:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="800"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(100~10000)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="搜索阈值:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="20"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(0~20)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="搜索范围:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="200"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(100~500)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="搜索速度:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="5"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="%"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(1~100)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="搜索压力:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="20"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="g"/>
@@ -112,29 +100,33 @@
                             <TextBlock Style="{StaticResource SectionTitleText}" Text="线夹参数"/>
                         </StackPanel>
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="打开力:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="150"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="%"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(0~500)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="夹紧力:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="300"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="%"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(0~500)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="断丝力:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="300"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="%"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(0~500)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="开关缓冲:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="35"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="ms"/>
@@ -176,7 +168,7 @@
         </ScrollViewer>
 
         <!-- 操作栏 -->
-        <Border Grid.Row="2" Background="#101B2B" CornerRadius="8" Padding="12,8" BorderBrush="#1E293B" BorderThickness="1">
+        <Border Grid.Row="1" Background="#101B2B" CornerRadius="8" Padding="12,8" BorderBrush="#1E293B" BorderThickness="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>
                 <Button Style="{StaticResource ActionButton}" Content="保存参数"/>

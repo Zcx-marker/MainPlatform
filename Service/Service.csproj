@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DbService\UserDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimulationService\LogSimulationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
@@ -53,9 +54,14 @@
       <Project>{6aece6b8-b962-4783-82cb-c2ce73a1a420}</Project>
       <Name>DbModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LogModule\LogModule.csproj">
+      <Project>{452a1110-193d-41b6-a63e-f4ec72fd2f6e}</Project>
+      <Name>LogModule</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,11 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:local="clr-namespace:MainPlatform.Views"
+        xmlns:vms="clr-namespace:MainPlatform.ViewModels"
         mc:Ignorable="d"
         Title="{Binding AppTitle}"
+        d:DataContext="{d:DesignInstance Type=vms:MainWindowViewModel, IsDesignTimeCreatable=True}"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
         WindowStyle="None"
+        Height="768"
+        Width="1024"
         ResizeMode="NoResize"
         Background="#0B1220"
         Foreground="#F8FAFC"
@@ -89,7 +93,7 @@
         <Style x:Key="TopButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="36" />
             <Setter Property="Padding" Value="12,0" />
-            <Setter Property="Margin" Value="4,0,0,0" />
+            <Setter Property="Margin" Value="12,0,0,0" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Background" Value="#1E293B" />
             <Setter Property="Foreground" Value="#E2E8F0" />
@@ -166,12 +170,12 @@
                     <TextBlock Text="{Binding CurrentTime}" Foreground="#94A3B8" FontSize="13"
                                VerticalAlignment="Center" Margin="0,0,16,0" />
                     <Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" FontSize="16"
-                            Style="{StaticResource TopButtonStyle}" cal:Message.Attach="GoBackAsync"
+                            Style="{StaticResource TopButtonStyle}" cal:Message.Attach="GoBackAsync" 
                             IsEnabled="{Binding CanGoBack}" ToolTip="后退" />
                     <Button Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" FontSize="16"
                             Style="{StaticResource TopButtonStyle}" cal:Message.Attach="GoForwardAsync"
                             IsEnabled="{Binding CanGoForward}" ToolTip="前进" />
-                    <Button Content="退出登录" Style="{StaticResource TopButtonStyle}"
+                    <Button Content="退出登录" Style="{StaticResource TopButtonStyle}" Foreground="Red"
                             cal:Message.Attach="LogoutAsync" Margin="8,0,0,0" />
                 </StackPanel>
             </Grid>
@@ -179,6 +183,9 @@
 
         <!-- ==================== 主区域 ==================== -->
         <Grid Grid.Row="1">
+
+            <!-- 主内容区：左侧导航 + 页面内容 -->
+            <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="*" />
@@ -216,16 +223,15 @@
             <!-- 内容区：页面内容 + 底部页签 -->
             <Grid Grid.Column="1" Background="#0B1220">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="398*" />
-                    <RowDefinition Height="209*"/>
-                    <RowDefinition Height="52" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="52" />
                 </Grid.RowDefinitions>
 
                 <!-- 页面内容 -->
-                <ContentControl Grid.Row="0" cal:View.Model="{Binding CurrentTab.Screen}" Margin="0,0,0,52" Grid.RowSpan="3" />
+                <ContentControl Grid.Row="0" cal:View.Model="{Binding CurrentTab.Screen}" Margin="0,0,0,52" Grid.RowSpan="2" />
 
                 <!-- 底部页签（对应竞品：焊点参数/弧形参数/尾丝球形参数…） -->
-                <Border Grid.Row="2" Background="#0E1726" BorderBrush="#1E293B" BorderThickness="0,1,0,0">
+                <Border Grid.Row="1" Background="#0E1726" BorderBrush="#1E293B" BorderThickness="0,1,0,0">
                     <ItemsControl ItemsSource="{Binding Pages}" VerticalAlignment="Center">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -247,6 +253,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </Border>
+            </Grid>
             </Grid>
         </Grid>
 

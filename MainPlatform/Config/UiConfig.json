@@ -23,22 +23,40 @@
       "subMenuList": 
       [
         {
-          "key": "JobRecipe",
+          "key": "QhHandianCS",
           "displayName": "焊点参数",
           "icon": "list",
-          "viewModel": "MainPlatform.ViewModels.HandianViewModel"
+          "viewModel": "MainPlatform.ViewModels.QhHandianViewModel"
         },
         {
-          "key": "ProcessRecipe",
+          "key": "QhHuXingCS",
           "displayName": "弧形参数",
           "icon": "list",
-          "viewModel": "MainPlatform.ViewModels.HuXingViewModel"
+          "viewModel": "MainPlatform.ViewModels.QhHuXingViewModel"
         },
         {
-          "key": "AlarmGroup",
+          "key": "QhWsQiuXingCS",
           "displayName": "尾丝/球形参数",
           "icon": "list",
-          "viewModel": "MainPlatform.ViewModels.WeiSiQiuXingViewModel"
+          "viewModel": "MainPlatform.ViewModels.QhWeiSiQiuXingViewModel"
+        },
+        {
+          "key": "XhHandianCS",
+          "displayName": "焊点参数",
+          "icon": "list",
+          "viewModel": "MainPlatform.ViewModels.XhQhHandianViewModel"
+        },
+        {
+          "key": "XhHuXingCS",
+          "displayName": "弧形参数",
+          "icon": "list",
+          "viewModel": "MainPlatform.ViewModels.XhHuXingViewModel"
+        },
+        {
+          "key": "XhWsQiuXingCS",
+          "displayName": "尾丝/球形参数",
+          "icon": "list",
+          "viewModel": "MainPlatform.ViewModels.XhWeiSiQiuXingViewModel"
         }
       ]
     },

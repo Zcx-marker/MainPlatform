@@ -1,10 +1,10 @@
-<UserControl x:Class="MainPlatform.Views.WeiSiQiuXingView"
+<UserControl x:Class="MainPlatform.Views.QhWeiSiQiuXingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="580" d:DesignWidth="900"
+             d:DesignHeight="680" d:DesignWidth="900"
              Background="#0B1220">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -16,24 +16,11 @@
 
     <Grid Margin="14,10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- 页面信息条 -->
-        <Border Grid.Row="0" Style="{StaticResource PageInfoBar}">
-            <Grid>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="制程编程" Foreground="#475569" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBlock Text="  /  " Foreground="#334155" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBlock Text="尾丝/球形参数" Foreground="#38BDF8" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                </StackPanel>
-                <TextBlock Text="程序: wsd" Foreground="#64748B" FontSize="11" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            </Grid>
-        </Border>
-
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10">
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10">
             <StackPanel>
                 <!-- 线尾与送丝 -->
                 <Border Style="{StaticResource SectionCard}" Margin="0,0,0,10">
@@ -43,29 +30,33 @@
                             <TextBlock Style="{StaticResource SectionTitleText}" Text="线尾与送丝"/>
                         </StackPanel>
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="线尾长度:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="200"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(0~500)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="送丝超声:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="400"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="%"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(0~500)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="断丝距离:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="150"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(0~500)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="切球超声:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="50"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="%"/>
@@ -83,17 +74,21 @@
                             <TextBlock Style="{StaticResource SectionTitleText}" Text="切球参数"/>
                         </StackPanel>
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="切球高度:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="25"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(0~500)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="切球方向:" Width="84"/>
                                 <ComboBox Style="{StaticResource DarkComboBox}" SelectedIndex="0">
                                     <ComboBoxItem Content="X+"/>
@@ -102,13 +97,13 @@
                                     <ComboBoxItem Content="Y-"/>
                                 </ComboBox>
                             </StackPanel>
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="切球距离:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="80"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
                                 <TextBlock Style="{StaticResource ParamRange}" Text="(0~200)"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+                            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="压球偏置:" Width="84"/>
                                 <TextBox Style="{StaticResource ParamInput}" Text="40"/>
                                 <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
@@ -187,7 +182,7 @@
         </ScrollViewer>
 
         <!-- 操作栏 -->
-        <Border Grid.Row="2" Background="#101B2B" CornerRadius="8" Padding="12,8" BorderBrush="#1E293B" BorderThickness="1">
+        <Border Grid.Row="1" Background="#101B2B" CornerRadius="8" Padding="12,8" BorderBrush="#1E293B" BorderThickness="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>
                 <Button Style="{StaticResource ActionButton}" Content="保存参数"/>

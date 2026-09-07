@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MainPlatform.Views
 {
     /// <summary>
-    /// HandianView.xaml 的交互逻辑
+    /// XhHuXingView.xaml 的交互逻辑
     /// </summary>
-    public partial class HandianView : UserControl
+    public partial class XhHuXingView : UserControl
     {
-        public HandianView()
+        public XhHuXingView()
         {
             InitializeComponent();
         }
