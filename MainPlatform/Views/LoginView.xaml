@@ -13,21 +13,19 @@
         mc:Ignorable="d"
         Title="登录" Height="768" Width="1024"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-        Background="#0B1220" FontFamily="Microsoft YaHei UI">
-
+        Background="#F2F5F9" Foreground="#1F2329" FontFamily="Microsoft YaHei UI" FontSize="14">
     <Window.Resources>
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <conv:User2UserName x:Key="User2UserName"/>
-
         <Style x:Key="LoginTextBox" TargetType="TextBox">
             <Setter Property="Height" Value="44"/>
             <Setter Property="Padding" Value="12,0"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="#E2E8F0"/>
-            <Setter Property="Background" Value="#0D1726"/>
-            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="#1F2329"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#C0C8D0"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CaretBrush" Value="#38BDF8"/>
+            <Setter Property="CaretBrush" Value="#1E5AA8"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -41,23 +39,23 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter Property="BorderBrush" Value="#2563EB"/>
+                                <Setter Property="BorderBrush" Value="#1E5AA8"/>
+                                <Setter Property="BorderThickness" Value="1.5"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
         <Style x:Key="LoginPasswordBox" TargetType="PasswordBox">
             <Setter Property="Height" Value="44"/>
             <Setter Property="Padding" Value="12,0"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="#E2E8F0"/>
-            <Setter Property="Background" Value="#0D1726"/>
-            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="#1F2329"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#C0C8D0"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CaretBrush" Value="#38BDF8"/>
+            <Setter Property="CaretBrush" Value="#1E5AA8"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -71,19 +69,19 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter Property="BorderBrush" Value="#2563EB"/>
+                                <Setter Property="BorderBrush" Value="#1E5AA8"/>
+                                <Setter Property="BorderThickness" Value="1.5"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
         <Style x:Key="LoginButton" TargetType="Button">
             <Setter Property="Height" Value="44"/>
-            <Setter Property="Background" Value="#2563EB"/>
+            <Setter Property="Background" Value="#1E5AA8"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -98,22 +96,22 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#1D4ED8"/>
+                    <Setter Property="Background" Value="#2F6DB5"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#1E40AF"/>
+                    <Setter Property="Background" Value="#174A8A"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
-
         <!-- 取消按钮（灰色次级） -->
         <Style x:Key="LoginCancelButton" TargetType="Button">
             <Setter Property="Height" Value="44"/>
-            <Setter Property="Background" Value="#1E293B"/>
-            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="Background" Value="#E9EEF4"/>
+            <Setter Property="Foreground" Value="#1F2329"/>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#D5DCE3"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -123,23 +121,23 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#2A3A52"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#DCE3EA"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
         <!-- 返回按钮（<<） -->
         <Style x:Key="LoginBackButton" TargetType="Button">
             <Setter Property="Width" Value="40"/>
             <Setter Property="Height" Value="34"/>
-            <Setter Property="Background" Value="#1E293B"/>
-            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="Background" Value="#E9EEF4"/>
+            <Setter Property="Foreground" Value="#4B5563"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#D5DCE3"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -149,21 +147,20 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#2A3A52"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#DCE3EA"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
         <Style x:Key="LoginComboBox" TargetType="ComboBox">
             <Setter Property="Height" Value="44"/>
             <Setter Property="Padding" Value="12,0,36,0"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="#E2E8F0"/>
-            <Setter Property="Background" Value="#0D1726"/>
-            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="#1F2329"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#C0C8D0"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="MaxDropDownHeight" Value="240"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -176,8 +173,8 @@
                                           IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
                                 <ToggleButton.Template>
                                     <ControlTemplate TargetType="ToggleButton">
-                                        <Border Background="#0D1726"
-                                                BorderBrush="#334155"
+                                        <Border Background="#FFFFFF"
+                                                BorderBrush="#C0C8D0"
                                                 BorderThickness="1"
                                                 CornerRadius="6"/>
                                     </ControlTemplate>
@@ -188,14 +185,14 @@
                                               Content="{TemplateBinding SelectionBoxItem}"
                                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                               IsHitTestVisible="False"/>
-                            <Path Data="M 0 0 L 4 4 L 8 0" Stroke="#94A3B8" StrokeThickness="1.5"
+                            <Path Data="M 0 0 L 4 4 L 8 0" Stroke="#6B7A8C" StrokeThickness="1.5"
                                   HorizontalAlignment="Right" VerticalAlignment="Center"
                                   Margin="0,0,12,0" IsHitTestVisible="False"/>
                             <Popup x:Name="PART_Popup" AllowsTransparency="True"
                                    IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" StaysOpen="False">
                                 <Border MinWidth="{TemplateBinding ActualWidth}"
                                         MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                        Background="#101B2B" BorderBrush="#334155"
+                                        Background="#FFFFFF" BorderBrush="#C0C8D0"
                                         BorderThickness="1" CornerRadius="6" Margin="0,4,0,0">
                                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                                         <ItemsPresenter Margin="6"/>
@@ -205,19 +202,18 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="ToggleButton" Property="BorderBrush" Value="#475569"/>
+                                <Setter TargetName="ToggleButton" Property="BorderBrush" Value="#8A94A3"/>
                             </Trigger>
                             <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                                <Setter TargetName="ToggleButton" Property="BorderBrush" Value="#2563EB"/>
+                                <Setter TargetName="ToggleButton" Property="BorderBrush" Value="#1E5AA8"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
         <Style x:Key="LoginComboBoxItem" TargetType="ComboBoxItem">
-            <Setter Property="Foreground" Value="#E2E8F0"/>
+            <Setter Property="Foreground" Value="#1F2329"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Padding" Value="10,8"/>
             <Setter Property="Template">
@@ -231,7 +227,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsHighlighted" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#2563EB"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#1E5AA8"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -240,67 +236,58 @@
             </Setter>
         </Style>
     </Window.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="36"/>
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.25*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-
             <!-- 左侧品牌与设备信息区 -->
-            <Border Grid.Column="0" Background="#101B2B">
+            <Border Grid.Column="0" Background="#E9EEF4" BorderBrush="#D5DCE3" BorderThickness="0,0,1,0">
                 <Grid ClipToBounds="True">
-                    <Ellipse Width="460" Height="460" Fill="#0EA5E9" Opacity="0.08"
+                    <Ellipse Width="460" Height="460" Fill="#1E5AA8" Opacity="0.06"
                              HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-160,-160,0,0"/>
-                    <Ellipse Width="300" Height="300" Fill="#2563EB" Opacity="0.10"
+                    <Ellipse Width="300" Height="300" Fill="#1E5AA8" Opacity="0.08"
                              HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-100,-100"/>
-
                     <StackPanel VerticalAlignment="Center" Margin="80,0,60,0">
                         <Border Width="184" Height="84" CornerRadius="2" Background="White" Padding="9"
-                                HorizontalAlignment="Left" UseLayoutRounding="True">
+                                HorizontalAlignment="Left" BorderBrush="#D5DCE3" BorderThickness="1">
                             <Image Source="/Resources/Images/SCMC_Logo.png" Stretch="Uniform"
                                    RenderOptions.BitmapScalingMode="Fant"/>
                         </Border>
-
-                        <TextBlock Text="键合机上位机软件" Foreground="#F8FAFC" FontSize="30" FontWeight="Bold"
+                        <TextBlock Text="键合机上位机软件" Foreground="#1F2329" FontSize="30" FontWeight="Bold"
                                    Margin="0,26,0,0" TextWrapping="Wrap"/>
-                        <TextBlock Text="Equipment Host Control Platform" Foreground="#64748B" FontSize="13"
+                        <TextBlock Text="Equipment Host Control Platform" Foreground="#6B7A8C" FontSize="13"
                                    Margin="0,10,0,0"/>
-
-                        <Border Width="72" Height="3" Background="#2563EB" CornerRadius="2"
+                        <Border Width="72" Height="3" Background="#1E5AA8" CornerRadius="2"
                                 HorizontalAlignment="Left" Margin="0,30,0,0"/>
-
                         <StackPanel Orientation="Horizontal" Margin="0,28,0,0">
-                            <Ellipse Width="8" Height="8" Fill="#22C55E" VerticalAlignment="Center"/>
-                            <TextBlock Text="系统就绪 · 高精度 · 高可靠 · 智能化" Foreground="#38BDF8" FontSize="13"
+                            <Ellipse Width="8" Height="8" Fill="#2FA84F" VerticalAlignment="Center"/>
+                            <TextBlock Text="系统就绪 · 高精度 · 高可靠 · 智能化" Foreground="#1E5AA8" FontSize="13.5"
                                        Margin="10,0,0,0"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
             </Border>
-
             <!-- 右侧登录表单区 -->
-            <Border Grid.Column="1" Background="#0F1B2D">
+            <Border Grid.Column="1" Background="#FFFFFF">
                 <Grid Margin="64,40">
                     <StackPanel VerticalAlignment="Center">
                         <!-- 标题 + 返回按钮 -->
                         <Grid>
                             <StackPanel>
-                                <TextBlock Text="用户登录" Foreground="#F8FAFC" FontSize="28" FontWeight="Bold"/>
-                                <TextBlock Text="USER LOGIN" Foreground="#475569" FontSize="11" Margin="0,8,0,0"/>
+                                <TextBlock Text="用户登录" Foreground="#1F2329" FontSize="28" FontWeight="Bold"/>
+                                <TextBlock Text="USER LOGIN" Foreground="#6B7A8C" FontSize="11" Margin="0,8,0,0"/>
                             </StackPanel>
                             <Button Content="&#x3C;&#x3C;" Style="{StaticResource LoginBackButton}"
                                     HorizontalAlignment="Right" VerticalAlignment="Top"
                                     cal:Message.Attach="TryCloseAsync"
                                     ToolTip="返回"/>
                         </Grid>
-
                         <!-- 用户名 + 登录 -->
                         <Grid Margin="0,30,0,0">
                             <Grid.ColumnDefinitions>
@@ -308,7 +295,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="92"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="用户名：" Foreground="#94A3B8" FontSize="13" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="0" Text="用户名：" Foreground="#4B5563" FontSize="14" VerticalAlignment="Center"/>
                             <ComboBox Grid.Column="1" Style="{StaticResource LoginComboBox}"
                                       ItemContainerStyle="{StaticResource LoginComboBoxItem}"
                                       IsEditable="False"
@@ -326,7 +313,6 @@
                             <Button Grid.Column="2" Content="登 录" Style="{StaticResource LoginButton}"
                                     Margin="10,0,0,0" cal:Message.Attach="Login"/>
                         </Grid>
-
                         <!-- 密码 + 取消 -->
                         <Grid Margin="0,16,0,0">
                             <Grid.ColumnDefinitions>
@@ -334,7 +320,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="92"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="密 码：" Foreground="#94A3B8" FontSize="13" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="0" Text="密 码：" Foreground="#4B5563" FontSize="14" VerticalAlignment="Center"/>
                             <Grid Grid.Column="1">
                                 <PasswordBox Style="{StaticResource LoginPasswordBox}"
                                              conv:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -352,17 +338,17 @@
                                                     <ControlTemplate TargetType="ToggleButton">
                                                         <Grid Width="24" Height="24" Background="Transparent">
                                                             <TextBlock Text="&#xE7B3;" FontFamily="Segoe MDL2 Assets"
-                                                                       FontSize="15" Foreground="#64748B"
+                                                                       FontSize="15" Foreground="#6B7A8C"
                                                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                             <Line x:Name="Slash" X1="21" Y1="3" X2="3" Y2="21"
-                                                                  Stroke="#64748B" StrokeThickness="1.8"
+                                                                  Stroke="#6B7A8C" StrokeThickness="1.8"
                                                                   StrokeStartLineCap="Round" StrokeEndLineCap="Round"
                                                                   Visibility="Collapsed"/>
                                                         </Grid>
                                                         <ControlTemplate.Triggers>
                                                             <Trigger Property="IsChecked" Value="False">
                                                                 <Setter TargetName="Slash" Property="Visibility" Value="Visible"/>
-                                                                <Setter TargetName="Slash" Property="Stroke" Value="#38BDF8"/>
+                                                                <Setter TargetName="Slash" Property="Stroke" Value="#1E5AA8"/>
                                                             </Trigger>
                                                         </ControlTemplate.Triggers>
                                                     </ControlTemplate>
@@ -380,33 +366,29 @@
                             <Button Grid.Column="2" Content="取 消" Style="{StaticResource LoginCancelButton}"
                                     Margin="10,0,0,0" cal:Message.Attach="ClearPassWord"/>
                         </Grid>
-
                         <!-- 记住密码 + 注册账号 -->
                         <Grid Margin="0,14,0,0">
                             <CheckBox Content="记住密码" IsChecked="{Binding IsRemembered, Mode=TwoWay}"
-                                      Foreground="#94A3B8" FontSize="12" VerticalAlignment="Center"/>
-                            <Button Content="注册账号" Foreground="#38BDF8" Background="Transparent" BorderThickness="0" cal:Message.Attach="Register"
-                                    HorizontalAlignment="Right" Cursor="Hand"/>
+                                      Foreground="#4B5563" FontSize="13" VerticalAlignment="Center"/>
+                            <Button Content="注册账号" Foreground="#1E5AA8" Background="Transparent" BorderThickness="0"
+                                    HorizontalAlignment="Right" Cursor="Hand" FontSize="13.5" FontWeight="SemiBold"/>
                         </Grid>
-
                         <!-- 分隔线 -->
-                        <Border Height="1" Background="#1E293B" Margin="0,24,0,22"/>
-
+                        <Border Height="1" Background="#E5E8EB" Margin="0,24,0,22"/>
                         <!-- 设备参数区 -->
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
-                            <Border Width="3" Height="14" Background="#38BDF8" CornerRadius="2"
-                                    VerticalAlignment="Center" Margin="0,0,8,0"/>
-                            <TextBlock Text="设备参数" Foreground="#E2E8F0" FontSize="14" FontWeight="SemiBold"
+                            <Border Width="4" Height="16" Background="#1E5AA8" CornerRadius="2"
+                                    VerticalAlignment="Center" Margin="0,0,9,0"/>
+                            <TextBlock Text="设备参数" Foreground="#1F2329" FontSize="16" FontWeight="SemiBold"
                                        VerticalAlignment="Center"/>
                         </StackPanel>
-
                         <!-- 设备类型 -->
                         <Grid Margin="0,0,0,14">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="76"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="设备类型：" Foreground="#94A3B8" FontSize="13" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="0" Text="设备类型：" Foreground="#4B5563" FontSize="14" VerticalAlignment="Center"/>
                             <ComboBox Grid.Column="1" Style="{StaticResource LoginComboBox}"
                                       ItemContainerStyle="{StaticResource LoginComboBoxItem}"
                                       ItemsSource="{Binding ModeList}"
@@ -414,17 +396,15 @@
                                       SelectedIndex="0">
                             </ComboBox>
                         </Grid>
-
                         <!-- 摇杆变比 -->
                         <Grid Margin="0,0,0,14">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="76"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="摇杆变比：" Foreground="#94A3B8" FontSize="13" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="0" Text="摇杆变比：" Foreground="#4B5563" FontSize="14" VerticalAlignment="Center"/>
                             <TextBox Grid.Column="1" Style="{StaticResource LoginTextBox}" Text="{Binding YgChanged}"/>
                         </Grid>
-
                         <!-- Z向起点 -->
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -432,30 +412,28 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Z向起点：" Foreground="#94A3B8" FontSize="13" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="0" Text="Z向起点：" Foreground="#4B5563" FontSize="14" VerticalAlignment="Center"/>
                             <TextBox Grid.Column="1" Style="{StaticResource LoginTextBox}" Text="{Binding ZStartPos}"/>
                             <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                                <TextBlock Text="um" Foreground="#94A3B8" FontSize="13" VerticalAlignment="Center"/>
-                                <TextBlock Text="(2000-33500)" Foreground="#475569" FontSize="11" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                <TextBlock Text="um" Foreground="#6B7A8C" FontSize="13" VerticalAlignment="Center"/>
+                                <TextBlock Text="(2000-33500)" Foreground="#8A94A3" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             </StackPanel>
                         </Grid>
-
                         <!-- 提示 -->
-                        <TextBlock Text="提示：使用你的用户名和密码登录。" Foreground="#475569" FontSize="11"
+                        <TextBlock Text="提示：使用你的用户名和密码登录。" Foreground="#8A94A3" FontSize="12"
                                    HorizontalAlignment="Center" Margin="0,22,0,0" />
                     </StackPanel>
                 </Grid>
             </Border>
         </Grid>
-
         <!-- 底部状态栏 -->
-        <Border Grid.Row="1" Background="#0B1220" BorderBrush="#1E293B" BorderThickness="0,1,0,0">
+        <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#E5E8EB" BorderThickness="0,1,0,0">
             <Grid Margin="16,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Ellipse Width="8" Height="8" Fill="#22C55E"/>
-                    <TextBlock Text="系统就绪" Foreground="#94A3B8" FontSize="11" Margin="8,0,0,0"/>
+                    <Ellipse Width="8" Height="8" Fill="#2FA84F"/>
+                    <TextBlock Text="系统就绪" Foreground="#4B5563" FontSize="12" Margin="8,0,0,0"/>
                 </StackPanel>
-                <TextBlock Text="v1.0.0  ·  Equipment Ready" Foreground="#475569" FontSize="11"
+                <TextBlock Text="v1.0.0  ·  Eqp Ready" Foreground="#8A94A3" FontSize="12"
                            HorizontalAlignment="Right" VerticalAlignment="Center"/>
             </Grid>
         </Border>

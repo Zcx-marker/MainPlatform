@@ -1,4 +1,4 @@
-﻿<Application x:Class="MainPlatform.App"
+<Application x:Class="MainPlatform.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MainPlatform">
@@ -6,7 +6,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <!-- 工控浅色皮肤（白纸黑字），替代 HandyControl 默认深色皮肤 SkinDefault -->
+                <ResourceDictionary Source="pack://application:,,,/MainPlatform;component/Styles/LightSkin.xaml"/>
                 <ResourceDictionary>
                     <local:Bootstrapper x:Key="Bootstrapper" />
                 </ResourceDictionary>

@@ -1,11 +1,11 @@
-<UserControl x:Class="MainPlatform.Views.CalibrationTestView"
+﻿<UserControl x:Class="MainPlatform.Views.CalibrationTestView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="580" d:DesignWidth="900"
-             Background="#0B1220">
+             Background="#F2F5F9">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -103,7 +103,7 @@
                     <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource CalibButton}" Content="序列号" Margin="4"/>
                 </Grid>
                 <!-- 校准状态（扩展） -->
-                <Border Background="#0D1726" CornerRadius="8" Padding="12,10" Margin="0,12,0,0">
+                <Border Background="#FFFFFF" CornerRadius="8" Padding="12,10" Margin="0,12,0,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -111,16 +111,16 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <Ellipse Width="8" Height="8" Fill="#22C55E" VerticalAlignment="Center"/>
-                            <TextBlock Text="力校准: 已完成" Foreground="#94A3B8" FontSize="11" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                            <Ellipse Width="8" Height="8" Fill="#2FA84F" VerticalAlignment="Center"/>
+                            <TextBlock Text="力校准: 已完成" Foreground="#4B5563" FontSize="12" Margin="8,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <Ellipse Width="8" Height="8" Fill="#22C55E" VerticalAlignment="Center"/>
-                            <TextBlock Text="超声校准: 已完成" Foreground="#94A3B8" FontSize="11" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                            <Ellipse Width="8" Height="8" Fill="#2FA84F" VerticalAlignment="Center"/>
+                            <TextBlock Text="超声校准: 已完成" Foreground="#4B5563" FontSize="12" Margin="8,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
-                            <Ellipse Width="8" Height="8" Fill="#F59E0B" VerticalAlignment="Center"/>
-                            <TextBlock Text="序列号: 未配置" Foreground="#94A3B8" FontSize="11" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                            <Ellipse Width="8" Height="8" Fill="#F0A500" VerticalAlignment="Center"/>
+                            <TextBlock Text="序列号: 未配置" Foreground="#4B5563" FontSize="12" Margin="8,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -128,7 +128,7 @@
         </Border>
 
         <!-- 操作栏 -->
-        <Border Grid.Row="2" Background="#101B2B" CornerRadius="8" Padding="12,8" BorderBrush="#1E293B" BorderThickness="1">
+        <Border Grid.Row="2" Background="#FFFFFF" CornerRadius="8" Padding="12,8" BorderBrush="#E5E8EB" BorderThickness="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>
                 <Button Style="{StaticResource ActionButton}" Content="保存参数"/>

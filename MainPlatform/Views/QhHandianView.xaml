@@ -1,11 +1,11 @@
-<UserControl x:Class="MainPlatform.Views.QhHandianView"
+﻿<UserControl x:Class="MainPlatform.Views.QhHandianView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="580" d:DesignWidth="900"
-             Background="#0B1220">
+             Background="#F2F5F9">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -77,12 +77,12 @@
                     <!-- 焊点导航 -->
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Style="{StaticResource NavArrowButton}" Content="←"/>
-                        <Border Background="#0D1726" BorderBrush="#334155" BorderThickness="1" CornerRadius="6"
+                        <Border Background="#FFFFFF" BorderBrush="#C0C8D0" BorderThickness="1" CornerRadius="6"
                                 Height="36" Width="70" Margin="8,0">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="第 " Foreground="#64748B" FontSize="13" VerticalAlignment="Center"/>
-                                <TextBlock Text="2" Foreground="#38BDF8" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
-                                <TextBlock Text=" 焊点" Foreground="#64748B" FontSize="13" VerticalAlignment="Center"/>
+                                <TextBlock Text="第 " Foreground="#6B7A8C" FontSize="13" VerticalAlignment="Center"/>
+                                <TextBlock Text="2" Foreground="#1E5AA8" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <TextBlock Text=" 焊点" Foreground="#6B7A8C" FontSize="13" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Border>
                         <Button Style="{StaticResource NavArrowButton}" Content="→"/>
@@ -149,7 +149,7 @@
         </Border>
 
         <!-- 操作栏（扩展） -->
-        <Border Grid.Row="3" Background="#101B2B" CornerRadius="8" Padding="12,8" BorderBrush="#1E293B" BorderThickness="1">
+        <Border Grid.Row="3" Background="#FFFFFF" CornerRadius="8" Padding="12,8" BorderBrush="#E5E8EB" BorderThickness="1">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>

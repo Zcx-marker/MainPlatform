@@ -1,4 +1,4 @@
-﻿<Window x:Class="MainPlatform.Views.MainWindowView"
+<Window x:Class="MainPlatform.Views.MainWindowView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,9 +14,10 @@
         Height="768"
         Width="1024"
         ResizeMode="NoResize"
-        Background="#0B1220"
-        Foreground="#F8FAFC"
-        FontFamily="Microsoft YaHei UI">
+        Background="#F2F5F9"
+        Foreground="#1F2329"
+        FontFamily="Microsoft YaHei UI"
+        FontSize="14">
 
     <Window.Resources>
         <!-- ============ 左侧一级导航大按钮 ============ -->
@@ -25,8 +26,8 @@
             <Setter Property="Padding" Value="0" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="#C7D2E0" />
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="#3A4756" />
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Template">
@@ -34,14 +35,14 @@
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="10">
                             <Grid>
-                                <Border Width="3" Height="24" Background="#38BDF8" CornerRadius="2"
+                                <Border Width="4" Height="26" Background="#1E5AA8" CornerRadius="2"
                                         HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="0" x:Name="Ind" />
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#1B2A44" />
+                                <Setter TargetName="Bd" Property="Background" Value="#E0E6ED" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -50,7 +51,7 @@
             <Style.Triggers>
                 <!-- 当前选中的一级菜单 -->
                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                    <Setter Property="Background" Value="#16233A" />
+                    <Setter Property="Background" Value="#1E5AA8" />
                     <Setter Property="Foreground" Value="#FFFFFF" />
                 </DataTrigger>
             </Style.Triggers>
@@ -58,13 +59,14 @@
 
         <!-- ============ 底部页签按钮 ============ -->
         <Style x:Key="TabButtonStyle" TargetType="Button">
-            <Setter Property="Height" Value="36" />
-            <Setter Property="Padding" Value="18,0" />
+            <Setter Property="Height" Value="38" />
+            <Setter Property="Padding" Value="20,0" />
             <Setter Property="Margin" Value="6,0" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="#94A3B8" />
-            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Foreground" Value="#4B5563" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -74,7 +76,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#1B2A44" />
+                                <Setter TargetName="Bd" Property="Background" Value="#E9EEF4" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -83,7 +85,7 @@
             <Style.Triggers>
                 <!-- 当前选中的页签 -->
                 <DataTrigger Binding="{Binding Menu.IsSelected}" Value="True">
-                    <Setter Property="Background" Value="#2563EB" />
+                    <Setter Property="Background" Value="#1E5AA8" />
                     <Setter Property="Foreground" Value="#FFFFFF" />
                 </DataTrigger>
             </Style.Triggers>
@@ -92,22 +94,24 @@
         <!-- ============ 顶部工具按钮 ============ -->
         <Style x:Key="TopButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="36" />
-            <Setter Property="Padding" Value="12,0" />
-            <Setter Property="Margin" Value="12,0,0,0" />
+            <Setter Property="Padding" Value="14,0" />
+            <Setter Property="Margin" Value="10,0,0,0" />
             <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="Background" Value="#1E293B" />
-            <Setter Property="Foreground" Value="#E2E8F0" />
-            <Setter Property="FontSize" Value="12.5" />
-            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="#E9EEF4" />
+            <Setter Property="Foreground" Value="#1F2329" />
+            <Setter Property="FontSize" Value="13.5" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#D5DCE3" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="6">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="5">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#334155" />
+                                <Setter TargetName="Bd" Property="Background" Value="#DCE3EA" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter TargetName="Bd" Property="Opacity" Value="0.4" />
@@ -123,11 +127,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="64" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="32" />
         </Grid.RowDefinitions>
 
         <!-- ==================== 顶部工具栏 ==================== -->
-        <Border Grid.Row="0" Background="#101B2B" BorderBrush="#1E293B" BorderThickness="0,0,0,1">
+        <Border Grid.Row="0" Background="#FFFFFF" BorderBrush="#D5DCE3" BorderThickness="0,0,0,1">
             <Grid Margin="16,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -137,23 +141,24 @@
 
                 <!-- 左：Logo + 标题 -->
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Border Width="116" Height="40" Background="White" CornerRadius="4" Padding="5">
-                        <Image Source="/Resources/Images/SCMC_Logo.png" Stretch="Uniform" />
+                    <Border Width="116" Height="40" Background="#FFFFFF" CornerRadius="4" Padding="5" BorderBrush="#D5DCE3" BorderThickness="1">
+                        <Image Source="/Resources/Images/SCMC_Logo.png" Stretch="Uniform"
+                               RenderOptions.BitmapScalingMode="Fant" />
                     </Border>
                     <StackPanel Margin="16,0,0,0" VerticalAlignment="Center">
-                        <TextBlock Text="{Binding AppTitle}" FontSize="18" FontWeight="Bold" Foreground="#F8FAFC" />
-                        <TextBlock Text="{Binding AppSubTitle}" FontSize="11" Foreground="#64748B" Margin="0,4,0,0" />
+                        <TextBlock Text="{Binding AppTitle}" FontSize="20" FontWeight="Bold" Foreground="#1F2329" />
+                        <TextBlock Text="{Binding AppSubTitle}" FontSize="12" Foreground="#6B7A8C" Margin="0,4,0,0" />
                     </StackPanel>
                 </StackPanel>
 
                 <!-- 中：程序信息 + 操作按钮 -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Border Background="#0D1726" CornerRadius="6" Padding="14,6" BorderBrush="#334155" BorderThickness="1">
+                    <Border Background="#F5F7FA" CornerRadius="6" Padding="16,7" BorderBrush="#D5DCE3" BorderThickness="1">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="程序：" Foreground="#64748B" FontSize="12" VerticalAlignment="Center" />
-                            <TextBlock Text="{Binding RecipeName}" Foreground="#38BDF8" FontSize="12" VerticalAlignment="Center" />
-                            <TextBlock Text="　　顺序号：" Foreground="#64748B" FontSize="12" VerticalAlignment="Center" />
-                            <TextBlock Text="{Binding SequenceNo}" Foreground="#38BDF8" FontSize="12" VerticalAlignment="Center" />
+                            <TextBlock Text="程序：" Foreground="#4B5563" FontSize="13" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding RecipeName}" Foreground="#1E5AA8" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" />
+                            <TextBlock Text="　顺序号：" Foreground="#4B5563" FontSize="13" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding SequenceNo}" Foreground="#1E5AA8" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" />
                         </StackPanel>
                     </Border>
                     <Button Content="打开程序" Style="{StaticResource TopButtonStyle}" cal:Message.Attach="OpenRecipe" />
@@ -161,21 +166,19 @@
                     <Button Content="统计" Style="{StaticResource TopButtonStyle}" cal:Message.Attach="ShowStatistics" />
                 </StackPanel>
 
-                <!-- 右：用户 + 时间 + 前进后退 + 退出 -->
+                <!-- 右：用户 + 前进后退 + 退出 -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Ellipse Width="8" Height="8" Fill="#22C55E" VerticalAlignment="Center" />
-                    <TextBlock Text="{Binding DisplayUserName}" Foreground="#94A3B8" FontSize="13"
-                               VerticalAlignment="Center" Margin="8,0,0,0" />
-                    <Border Width="1" Height="24" Background="#1E293B" Margin="16,0" />
-                    <TextBlock Text="{Binding CurrentTime}" Foreground="#94A3B8" FontSize="13"
-                               VerticalAlignment="Center" Margin="0,0,16,0" />
-                    <Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" FontSize="16"
-                            Style="{StaticResource TopButtonStyle}" cal:Message.Attach="GoBackAsync" 
+                    <Ellipse Width="8" Height="8" Fill="#2FA84F" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding DisplayUserName}" Foreground="#4B5563" FontSize="13.5"
+                               FontWeight="SemiBold" VerticalAlignment="Center" Margin="8,0,0,0" />
+                    <Border Width="1" Height="24" Background="#E5E8EB" Margin="16,0" />
+                    <Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" FontSize="20" Height="44"
+                            Width="48" Style="{StaticResource TopButtonStyle}" cal:Message.Attach="GoBackAsync" 
                             IsEnabled="{Binding CanGoBack}" ToolTip="后退" />
-                    <Button Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" FontSize="16"
-                            Style="{StaticResource TopButtonStyle}" cal:Message.Attach="GoForwardAsync"
+                    <Button Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" FontSize="20" Height="44"
+                            Width="48" Style="{StaticResource TopButtonStyle}" cal:Message.Attach="GoForwardAsync"
                             IsEnabled="{Binding CanGoForward}" ToolTip="前进" />
-                    <Button Content="退出登录" Style="{StaticResource TopButtonStyle}" Foreground="Red"
+                    <Button Content="退出登录" Style="{StaticResource TopButtonStyle}" Foreground="#D93026"
                             cal:Message.Attach="LogoutAsync" Margin="8,0,0,0" />
                 </StackPanel>
             </Grid>
@@ -192,7 +195,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- 左侧一级导航（竞品布局：三个固定大按钮均分填满左侧高度） -->
-            <Border Grid.Column="0" Background="#0F1B2D" BorderBrush="#1E293B" BorderThickness="0,0,1,0">
+            <Border Grid.Column="0" Background="#E9EEF4" BorderBrush="#D5DCE3" BorderThickness="0,0,1,0">
                 <Grid Margin="0,12,0,12">
                     <ItemsControl ItemsSource="{Binding Menus}">
                         <ItemsControl.ItemsPanel>
@@ -207,11 +210,11 @@
                                         Style="{StaticResource MenuButtonStyle}">
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock Text="{Binding IconGlyph}" FontFamily="Segoe MDL2 Assets"
-                                                   FontSize="20" Foreground="#38BDF8" HorizontalAlignment="Center" />
-                                        <TextBlock Text="{Binding DisplayName}" FontSize="16"
-                                                   HorizontalAlignment="Center" TextWrapping="Wrap" Width="22"
+                                                   FontSize="22" Foreground="#1E5AA8" HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding DisplayName}" FontSize="17"
+                                                   HorizontalAlignment="Center" TextWrapping="Wrap" Width="24"
                                                    Margin="0,10,0,0" TextAlignment="Center"
-                                                   LineHeight="24" LineStackingStrategy="BlockLineHeight" />
+                                                   LineHeight="26" LineStackingStrategy="BlockLineHeight" />
                                     </StackPanel>
                                 </Button>
                             </DataTemplate>
@@ -221,7 +224,7 @@
             </Border>
 
             <!-- 内容区：页面内容 + 底部页签 -->
-            <Grid Grid.Column="1" Background="#0B1220">
+            <Grid Grid.Column="1" Background="#F2F5F9">
                 <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="52" />
@@ -231,7 +234,7 @@
                 <ContentControl Grid.Row="0" cal:View.Model="{Binding CurrentTab.Screen}" Margin="0,0,0,52" Grid.RowSpan="2" />
 
                 <!-- 底部页签（对应竞品：焊点参数/弧形参数/尾丝球形参数…） -->
-                <Border Grid.Row="1" Background="#0E1726" BorderBrush="#1E293B" BorderThickness="0,1,0,0">
+                <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#D5DCE3" BorderThickness="0,1,0,0">
                     <ItemsControl ItemsSource="{Binding Pages}" VerticalAlignment="Center">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -245,7 +248,7 @@
                                         Style="{StaticResource TabButtonStyle}">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding IconGlyph}" FontFamily="Segoe MDL2 Assets"
-                                                   FontSize="13" Margin="0,0,6,0" VerticalAlignment="Center" />
+                                                   FontSize="14" Margin="0,0,6,0" VerticalAlignment="Center" />
                                         <TextBlock Text="{Binding Header}" VerticalAlignment="Center" />
                                     </StackPanel>
                                 </Button>
@@ -258,27 +261,27 @@
         </Grid>
 
         <!-- ==================== 底部状态栏（竞品：自动/线夹/超声/打火/坐标/时间） ==================== -->
-        <Border Grid.Row="2" Background="#0B1220" BorderBrush="#1E293B" BorderThickness="0,1,0,0">
+        <Border Grid.Row="2" Background="#FFFFFF" BorderBrush="#D5DCE3" BorderThickness="0,1,0,0">
             <Grid Margin="16,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Ellipse Width="8" Height="8" Fill="#22C55E" VerticalAlignment="Center" />
-                    <TextBlock Text="自动" Foreground="#94A3B8" FontSize="11" Margin="10,0,0,0" />
-                    <TextBlock Text="线夹关" Foreground="#94A3B8" FontSize="11" Margin="14,0,0,0" />
-                    <TextBlock Text="超声正常" Foreground="#94A3B8" FontSize="11" Margin="14,0,0,0" />
-                    <TextBlock Text="打火正常" Foreground="#94A3B8" FontSize="11" Margin="14,0,0,0" />
+                    <Ellipse Width="8" Height="8" Fill="#2FA84F" VerticalAlignment="Center" />
+                    <TextBlock Text="自动" Foreground="#4B5563" FontSize="12.5" Margin="10,0,0,0" />
+                    <TextBlock Text="线夹关" Foreground="#4B5563" FontSize="12.5" Margin="14,0,0,0" />
+                    <TextBlock Text="超声正常" Foreground="#4B5563" FontSize="12.5" Margin="14,0,0,0" />
+                    <TextBlock Text="打火正常" Foreground="#4B5563" FontSize="12.5" Margin="14,0,0,0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <TextBlock Foreground="#64748B" FontSize="11">
+                    <TextBlock Foreground="#6B7A8C" FontSize="12.5">
                         <Run Text="X: " /><Run Text="{Binding MachineX, Mode=OneWay}" />
                     </TextBlock>
-                    <TextBlock Foreground="#64748B" FontSize="11" Margin="12,0,0,0">
+                    <TextBlock Foreground="#6B7A8C" FontSize="12.5" Margin="12,0,0,0">
                         <Run Text="Y: " /><Run Text="{Binding MachineY, Mode=OneWay}" />
                     </TextBlock>
-                    <TextBlock Foreground="#64748B" FontSize="11" Margin="12,0,0,0">
+                    <TextBlock Foreground="#6B7A8C" FontSize="12.5" Margin="12,0,0,0">
                         <Run Text="Z: " /><Run Text="{Binding MachineZ, Mode=OneWay}" />
                     </TextBlock>
-                    <TextBlock Text="　·　" Foreground="#475569" FontSize="11" />
-                    <TextBlock Text="{Binding CurrentTime}" Foreground="#64748B" FontSize="11" />
+                    <TextBlock Text="　·　" Foreground="#8A94A3" FontSize="12.5" />
+                    <TextBlock Text="{Binding CurrentTime}" Foreground="#6B7A8C" FontSize="12.5" />
                 </StackPanel>
             </Grid>
         </Border>
