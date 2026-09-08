@@ -15,14 +15,14 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Margin="14,10">
+    <Grid Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- ============ KPI 统计卡片（扩展） ============ -->
+        <!-- ============ KPI 统计卡片（扩展） ============ --><!--
         <Grid Grid.Row="0" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -61,7 +61,7 @@
                     <TextBlock Style="{StaticResource KpiValue}" Text="03:42:18"/>
                 </StackPanel>
             </Border>
-        </Grid>
+        </Grid>-->
 
         <!-- ============ 变形量曲线区 ============ -->
         <Grid Grid.Row="1" Margin="0,0,0,10">
@@ -80,8 +80,8 @@
                     <!-- 曲线 -->
                     <Grid Grid.Column="0" Margin="0,0,10,0">
                         <TextBlock Text="第一点" Foreground="#6B7A8C" FontSize="12" HorizontalAlignment="Center" Margin="0,2,0,0"/>
-                        <Canvas Margin="36,18,10,22">
-                            <!-- Y轴刻度 -->
+                        <!--<Canvas Margin="36,18,10,22">
+                        
                             <TextBlock Text="25" Foreground="#8A94A3" FontSize="9" Canvas.Left="-28" Canvas.Top="-4"/>
                             <Line X1="0" Y1="0" X2="0" Y2="150" Stroke="#E5E8EB" StrokeThickness="1"/>
                             <TextBlock Text="20" Foreground="#8A94A3" FontSize="9" Canvas.Left="-28" Canvas.Top="26"/>
@@ -95,10 +95,10 @@
                             <Line X1="0" Y1="150" X2="520" Y2="150" Stroke="#E5E8EB" StrokeThickness="1"/>
                             <TextBlock Text="变形量/um" Foreground="#8A94A3" FontSize="9" Canvas.Left="-32" Canvas.Top="-18"/>
                             <TextBlock Text="焊点序列" Foreground="#8A94A3" FontSize="9" Canvas.Left="470" Canvas.Top="154"/>
-                            <!-- 上下限虚线 -->
+                    
                             <Line X1="0" Y1="102" X2="520" Y2="102" Stroke="#F0A500" StrokeThickness="1" StrokeDashArray="4,3"/>
                             <Line X1="0" Y1="114" X2="520" Y2="114" Stroke="#F0A500" StrokeThickness="1" StrokeDashArray="4,3"/>
-                            <!-- 数据线 -->
+                        
                             <Polyline Points="24,102 50,105 76,108 102,105 128,102 154,105 180,108 206,105 232,102 258,108 284,111 310,105 336,102 362,108 388,114 414,102 440,105 466,108 492,111 518,114"
                                       Stroke="#EF4444" StrokeThickness="1.5"/>
                             <Ellipse Canvas.Left="20" Canvas.Top="99" Width="5" Height="5" Fill="#EF4444"/>
@@ -121,7 +121,7 @@
                             <Ellipse Canvas.Left="462" Canvas.Top="105" Width="5" Height="5" Fill="#EF4444"/>
                             <Ellipse Canvas.Left="488" Canvas.Top="108" Width="5" Height="5" Fill="#EF4444"/>
                             <Ellipse Canvas.Left="514" Canvas.Top="111" Width="5" Height="5" Fill="#EF4444"/>
-                        </Canvas>
+                        </Canvas>-->
                     </Grid>
                     <!-- 右侧参数 -->
                     <Border Grid.Column="1" Background="#FFFFFF" CornerRadius="8" Padding="10,8">
@@ -150,45 +150,45 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0" Margin="0,0,10,0">
                         <TextBlock Text="第二点及中心点" Foreground="#6B7A8C" FontSize="12" HorizontalAlignment="Center" Margin="0,2,0,0"/>
-                        <Canvas Margin="36,18,10,22">
-                            <TextBlock Text="25" Foreground="#8A94A3" FontSize="9" Canvas.Left="-28" Canvas.Top="-4"/>
-                            <Line X1="0" Y1="0" X2="0" Y2="150" Stroke="#E5E8EB" StrokeThickness="1"/>
-                            <TextBlock Text="20" Foreground="#8A94A3" FontSize="9" Canvas.Left="-28" Canvas.Top="26"/>
-                            <Line X1="0" Y1="30" X2="520" Y2="30" Stroke="#1E5AA8" StrokeThickness="1"/>
-                            <TextBlock Text="15" Foreground="#8A94A3" FontSize="9" Canvas.Left="-28" Canvas.Top="56"/>
-                            <Line X1="0" Y1="60" X2="520" Y2="60" Stroke="#1E5AA8" StrokeThickness="1"/>
-                            <TextBlock Text="10" Foreground="#8A94A3" FontSize="9" Canvas.Left="-28" Canvas.Top="86"/>
-                            <Line X1="0" Y1="90" X2="520" Y2="90" Stroke="#1E5AA8" StrokeThickness="1"/>
-                            <TextBlock Text="5" Foreground="#8A94A3" FontSize="9" Canvas.Left="-28" Canvas.Top="116"/>
-                            <Line X1="0" Y1="120" X2="520" Y2="120" Stroke="#1E5AA8" StrokeThickness="1"/>
-                            <Line X1="0" Y1="150" X2="520" Y2="150" Stroke="#E5E8EB" StrokeThickness="1"/>
-                            <TextBlock Text="变形量/um" Foreground="#8A94A3" FontSize="9" Canvas.Left="-32" Canvas.Top="-18"/>
-                            <TextBlock Text="焊点序列" Foreground="#8A94A3" FontSize="9" Canvas.Left="470" Canvas.Top="154"/>
-                            <Line X1="0" Y1="78" X2="520" Y2="78" Stroke="#F0A500" StrokeThickness="1" StrokeDashArray="4,3"/>
-                            <Line X1="0" Y1="114" X2="520" Y2="114" Stroke="#F0A500" StrokeThickness="1" StrokeDashArray="4,3"/>
-                            <Polyline Points="24,72 50,90 76,90 102,93 128,96 154,93 180,90 206,93 232,93 258,90 284,93 310,96 336,99 362,99 388,102 414,114 440,108 466,102 492,99 518,96"
-                                      Stroke="#EF4444" StrokeThickness="1.5"/>
-                            <Ellipse Canvas.Left="20" Canvas.Top="69" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="46" Canvas.Top="87" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="72" Canvas.Top="87" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="98" Canvas.Top="90" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="124" Canvas.Top="93" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="150" Canvas.Top="90" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="176" Canvas.Top="87" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="202" Canvas.Top="90" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="228" Canvas.Top="90" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="254" Canvas.Top="87" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="280" Canvas.Top="90" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="306" Canvas.Top="93" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="332" Canvas.Top="96" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="358" Canvas.Top="96" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="384" Canvas.Top="99" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="410" Canvas.Top="111" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="436" Canvas.Top="105" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="462" Canvas.Top="99" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="488" Canvas.Top="96" Width="5" Height="5" Fill="#EF4444"/>
-                            <Ellipse Canvas.Left="514" Canvas.Top="93" Width="5" Height="5" Fill="#EF4444"/>
-                        </Canvas>
+                        <!--<canvas margin="36,18,10,22">
+                            <textblock text="25" foreground="#8a94a3" fontsize="9" canvas.left="-28" canvas.top="-4"/>
+                            <line x1="0" y1="0" x2="0" y2="150" stroke="#e5e8eb" strokethickness="1"/>
+                            <textblock text="20" foreground="#8a94a3" fontsize="9" canvas.left="-28" canvas.top="26"/>
+                            <line x1="0" y1="30" x2="520" y2="30" stroke="#1e5aa8" strokethickness="1"/>
+                            <textblock text="15" foreground="#8a94a3" fontsize="9" canvas.left="-28" canvas.top="56"/>
+                            <line x1="0" y1="60" x2="520" y2="60" stroke="#1e5aa8" strokethickness="1"/>
+                            <textblock text="10" foreground="#8a94a3" fontsize="9" canvas.left="-28" canvas.top="86"/>
+                            <line x1="0" y1="90" x2="520" y2="90" stroke="#1e5aa8" strokethickness="1"/>
+                            <textblock text="5" foreground="#8a94a3" fontsize="9" canvas.left="-28" canvas.top="116"/>
+                            <line x1="0" y1="120" x2="520" y2="120" stroke="#1e5aa8" strokethickness="1"/>
+                            <line x1="0" y1="150" x2="520" y2="150" stroke="#e5e8eb" strokethickness="1"/>
+                            <textblock text="变形量/um" foreground="#8a94a3" fontsize="9" canvas.left="-32" canvas.top="-18"/>
+                            <textblock text="焊点序列" foreground="#8a94a3" fontsize="9" canvas.left="470" canvas.top="154"/>
+                            <line x1="0" y1="78" x2="520" y2="78" stroke="#f0a500" strokethickness="1" strokedasharray="4,3"/>
+                            <line x1="0" y1="114" x2="520" y2="114" stroke="#f0a500" strokethickness="1" strokedasharray="4,3"/>
+                            <polyline points="24,72 50,90 76,90 102,93 128,96 154,93 180,90 206,93 232,93 258,90 284,93 310,96 336,99 362,99 388,102 414,114 440,108 466,102 492,99 518,96"
+                                      stroke="#ef4444" strokethickness="1.5"/>
+                            <ellipse canvas.left="20" canvas.top="69" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="46" canvas.top="87" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="72" canvas.top="87" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="98" canvas.top="90" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="124" canvas.top="93" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="150" canvas.top="90" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="176" canvas.top="87" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="202" canvas.top="90" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="228" canvas.top="90" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="254" canvas.top="87" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="280" canvas.top="90" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="306" canvas.top="93" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="332" canvas.top="96" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="358" canvas.top="96" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="384" canvas.top="99" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="410" canvas.top="111" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="436" canvas.top="105" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="462" canvas.top="99" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="488" canvas.top="96" width="5" height="5" fill="#ef4444"/>
+                            <ellipse canvas.left="514" canvas.top="93" width="5" height="5" fill="#ef4444"/>
+                        </canvas>-->
                     </Grid>
                     <Border Grid.Column="1" Background="#FFFFFF" CornerRadius="8" Padding="10,8">
                         <StackPanel>
@@ -211,12 +211,12 @@
         <!-- ============ 底部：日志 + 线弧信息 ============ -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2.5*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <!-- 日志控制台（实时日志） -->
             <Border Grid.Column="0" Style="{StaticResource LogConsole}" Margin="0,0,6,0" Padding="0">
-                <local:LogViewerControl Height="150"/>
+                <local:LogViewerControl Height="200"/>
             </Border>
             <!-- 线弧信息 -->
             <Border Grid.Column="1" Style="{StaticResource SectionCard}" Margin="6,0,0,0" Padding="12,10">

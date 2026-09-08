@@ -133,18 +133,22 @@
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\User2UserName.cs" />
     <Compile Include="ViewModels\CalibrationTestViewModel.cs" />
+    <Compile Include="ViewModels\EnsureIdentityViewModel.cs" />
     <Compile Include="ViewModels\QhHandianViewModel.cs" />
     <Compile Include="ViewModels\QhHuXingViewModel.cs" />
     <Compile Include="ViewModels\ModeViewModel.cs" />
     <Compile Include="ViewModels\OverviewViewModel.cs" />
     <Compile Include="ViewModels\PlanViewModel.cs" />
-    <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\QhWeiSiQiuXingViewModel.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\XhHuXingViewModel.cs" />
     <Compile Include="ViewModels\XhQhHandianViewModel.cs" />
     <Compile Include="ViewModels\XhWeiSiQiuXingViewModel.cs" />
     <Compile Include="Views\CalibrationTestView.xaml.cs">
       <DependentUpon>CalibrationTestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EnsureIdentityView.xaml.cs">
+      <DependentUpon>EnsureIdentityView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\QhHandianView.xaml.cs">
       <DependentUpon>QhHandianView.xaml</DependentUpon>
@@ -161,11 +165,11 @@
     <Compile Include="Views\PlanView.xaml.cs">
       <DependentUpon>PlanView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RegisterView.xaml.cs">
-      <DependentUpon>RegisterView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\QhWeiSiQiuXingView.xaml.cs">
       <DependentUpon>QhWeiSiQiuXingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegistrationView.xaml.cs">
+      <DependentUpon>RegistrationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\XhHuXingView.xaml.cs">
       <DependentUpon>XhHuXingView.xaml</DependentUpon>
@@ -177,6 +181,10 @@
       <DependentUpon>XhWeiSiQiuXingView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\CalibrationTestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EnsureIdentityView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,6 +220,7 @@
     <Compile Include="Models\AppConfig.cs" />
     <Compile Include="Models\DbConfig.cs" />
     <Compile Include="Models\UiConfig.cs" />
+    <Compile Include="Tools\AutoStartHelper.cs" />
     <Compile Include="Tools\JsonTool.cs" />
     <Compile Include="Tools\PathTool.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -237,10 +246,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RegisterView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\QhWeiSiQiuXingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\LightSkin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegistrationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,6 +290,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\SCMC.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\SCMC_Logo_RL.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -311,16 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\SCMC_Logo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\SCMC.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

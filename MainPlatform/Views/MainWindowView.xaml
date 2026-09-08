@@ -1,4 +1,4 @@
-<Window x:Class="MainPlatform.Views.MainWindowView"
+﻿<Window x:Class="MainPlatform.Views.MainWindowView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -26,7 +26,7 @@
             <Setter Property="Padding" Value="0" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="#3A4756" />
+            <Setter Property="Foreground" Value="#1E5AA8" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -41,9 +41,13 @@
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#E0E6ED" />
-                            </Trigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}}" Value="True"/>
+                                    <Condition Binding="{Binding IsSelected}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="Bd" Property="Background" Value="#E0E6ED"/>
+                            </MultiDataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -75,9 +79,13 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#E9EEF4" />
-                            </Trigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}}" Value="True"/>
+                                    <Condition Binding="{Binding Menu.IsSelected}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="Bd" Property="Background" Value="#E9EEF4"/>
+                            </MultiDataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -125,9 +133,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="64" />
+            <RowDefinition Height="70" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="32" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
         <!-- ==================== 顶部工具栏 ==================== -->
@@ -141,11 +149,19 @@
 
                 <!-- 左：Logo + 标题 -->
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Border Width="116" Height="40" Background="#FFFFFF" CornerRadius="4" Padding="5" BorderBrush="#D5DCE3" BorderThickness="1">
-                        <Image Source="/Resources/Images/SCMC_Logo.png" Stretch="Uniform"
-                               RenderOptions.BitmapScalingMode="Fant" />
+                    <Border Width="152" Height="64" Background="Transparent" CornerRadius="4" Padding="1" BorderBrush="Transparent" BorderThickness="1">
+                        <Image Stretch="Uniform"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               SnapsToDevicePixels="True">
+                            <Image.Source>
+                                <!-- 按显示尺寸 2 倍解码（304px），避免 995px 原图一次缩小 8 倍导致采样糊 -->
+                                <BitmapImage UriSource="/Resources/Images/SCMC_Logo_RL.png"
+                                             DecodePixelWidth="304"
+                                             CacheOption="OnLoad"/>
+                            </Image.Source>
+                        </Image>
                     </Border>
-                    <StackPanel Margin="16,0,0,0" VerticalAlignment="Center">
+                    <StackPanel Margin="14,0,0,0" VerticalAlignment="Center">
                         <TextBlock Text="{Binding AppTitle}" FontSize="20" FontWeight="Bold" Foreground="#1F2329" />
                         <TextBlock Text="{Binding AppSubTitle}" FontSize="12" Foreground="#6B7A8C" Margin="0,4,0,0" />
                     </StackPanel>
@@ -172,12 +188,12 @@
                     <TextBlock Text="{Binding DisplayUserName}" Foreground="#4B5563" FontSize="13.5"
                                FontWeight="SemiBold" VerticalAlignment="Center" Margin="8,0,0,0" />
                     <Border Width="1" Height="24" Background="#E5E8EB" Margin="16,0" />
-                    <Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" FontSize="20" Height="44"
+                    <!--<Button Content="&#xE72B;" FontFamily="Segoe MDL2 Assets" FontSize="20" Height="44"
                             Width="48" Style="{StaticResource TopButtonStyle}" cal:Message.Attach="GoBackAsync" 
                             IsEnabled="{Binding CanGoBack}" ToolTip="后退" />
                     <Button Content="&#xE72A;" FontFamily="Segoe MDL2 Assets" FontSize="20" Height="44"
                             Width="48" Style="{StaticResource TopButtonStyle}" cal:Message.Attach="GoForwardAsync"
-                            IsEnabled="{Binding CanGoForward}" ToolTip="前进" />
+                            IsEnabled="{Binding CanGoForward}" ToolTip="前进" />-->
                     <Button Content="退出登录" Style="{StaticResource TopButtonStyle}" Foreground="#D93026"
                             cal:Message.Attach="LogoutAsync" Margin="8,0,0,0" />
                 </StackPanel>
@@ -189,74 +205,74 @@
 
             <!-- 主内容区：左侧导航 + 页面内容 -->
             <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <!-- 左侧一级导航（竞品布局：三个固定大按钮均分填满左侧高度） -->
-            <Border Grid.Column="0" Background="#E9EEF4" BorderBrush="#D5DCE3" BorderThickness="0,0,1,0">
-                <Grid Margin="0,12,0,12">
-                    <ItemsControl ItemsSource="{Binding Menus}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Rows="{Binding MenuCount}" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button cal:Message.Attach="SelectMenu($dataContext)"
+                <!-- 左侧一级导航（竞品布局：三个固定大按钮均分填满左侧高度） -->
+                <Border Grid.Column="0" Background="#E9EEF4" BorderBrush="#D5DCE3" BorderThickness="0,0,1,0">
+                    <Grid Margin="0,12,0,12">
+                        <ItemsControl ItemsSource="{Binding Menus}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="{Binding MenuCount}" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button cal:Message.Attach="SelectMenu($dataContext)"
                                         cal:Action.TargetWithoutContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"
                                         Style="{StaticResource MenuButtonStyle}">
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding IconGlyph}" FontFamily="Segoe MDL2 Assets"
-                                                   FontSize="22" Foreground="#1E5AA8" HorizontalAlignment="Center" />
-                                        <TextBlock Text="{Binding DisplayName}" FontSize="17"
-                                                   HorizontalAlignment="Center" TextWrapping="Wrap" Width="24"
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding IconGlyph}" FontFamily="Segoe MDL2 Assets"
+                                                   FontSize="26" HorizontalAlignment="Center" />
+                                            <TextBlock Text="{Binding DisplayName}" FontSize="20"
+                                                   HorizontalAlignment="Center" TextWrapping="Wrap" Width="25"
                                                    Margin="0,10,0,0" TextAlignment="Center"
                                                    LineHeight="26" LineStackingStrategy="BlockLineHeight" />
-                                    </StackPanel>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </Grid>
-            </Border>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </Border>
 
-            <!-- 内容区：页面内容 + 底部页签 -->
-            <Grid Grid.Column="1" Background="#F2F5F9">
-                <Grid.RowDefinitions>
+                <!-- 内容区：页面内容 + 底部页签 -->
+                <Grid Grid.Column="1" Background="#F2F5F9">
+                    <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="52" />
-                </Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
 
-                <!-- 页面内容 -->
-                <ContentControl Grid.Row="0" cal:View.Model="{Binding CurrentTab.Screen}" Margin="0,0,0,52" Grid.RowSpan="2" />
+                    <!-- 页面内容 -->
+                    <ContentControl Grid.Row="0" cal:View.Model="{Binding CurrentTab.Screen}" Margin="5"  />
 
-                <!-- 底部页签（对应竞品：焊点参数/弧形参数/尾丝球形参数…） -->
-                <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#D5DCE3" BorderThickness="0,1,0,0">
-                    <ItemsControl ItemsSource="{Binding Pages}" VerticalAlignment="Center">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="{Binding SubMeanuCount}" HorizontalAlignment="Stretch" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button cal:Message.Attach="SelectTab($dataContext)"
+                    <!-- 底部页签（对应竞品：焊点参数/弧形参数/尾丝球形参数…） -->
+                    <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#D5DCE3" BorderThickness="0,1,0,0">
+                        <ItemsControl ItemsSource="{Binding Pages}" VerticalAlignment="Center">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="{Binding SubMeanuCount}" HorizontalAlignment="Stretch" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button cal:Message.Attach="SelectTab($dataContext)"
                                         cal:Action.TargetWithoutContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"
                                         Style="{StaticResource TabButtonStyle}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding IconGlyph}" FontFamily="Segoe MDL2 Assets"
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding IconGlyph}" FontFamily="Segoe MDL2 Assets"
                                                    FontSize="14" Margin="0,0,6,0" VerticalAlignment="Center" />
-                                        <TextBlock Text="{Binding Header}" VerticalAlignment="Center" />
-                                    </StackPanel>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </Border>
-            </Grid>
+                                            <TextBlock Text="{Binding Header}" VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Border>
+                </Grid>
             </Grid>
         </Grid>
 

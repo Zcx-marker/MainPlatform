@@ -254,9 +254,9 @@
                     <Ellipse Width="300" Height="300" Fill="#1E5AA8" Opacity="0.08"
                              HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-100,-100"/>
                     <StackPanel VerticalAlignment="Center" Margin="80,0,60,0">
-                        <Border Width="184" Height="84" CornerRadius="2" Background="White" Padding="9"
+                        <Border Width="184" Height="84" CornerRadius="2" Background="White" Padding="1"
                                 HorizontalAlignment="Left" BorderBrush="#D5DCE3" BorderThickness="1">
-                            <Image Source="/Resources/Images/SCMC_Logo.png" Stretch="Uniform"
+                            <Image Source="/Resources/Images/SCMC_Logo_RL.png" Stretch="Uniform"
                                    RenderOptions.BitmapScalingMode="Fant"/>
                         </Border>
                         <TextBlock Text="键合机上位机软件" Foreground="#1F2329" FontSize="30" FontWeight="Bold"
@@ -294,6 +294,7 @@
                                 <ColumnDefinition Width="76"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="92"/>
+                                
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="用户名：" Foreground="#4B5563" FontSize="14" VerticalAlignment="Center"/>
                             <ComboBox Grid.Column="1" Style="{StaticResource LoginComboBox}"
@@ -370,8 +371,10 @@
                         <Grid Margin="0,14,0,0">
                             <CheckBox Content="记住密码" IsChecked="{Binding IsRemembered, Mode=TwoWay}"
                                       Foreground="#4B5563" FontSize="13" VerticalAlignment="Center"/>
-                            <Button Content="注册账号" Foreground="#1E5AA8" Background="Transparent" BorderThickness="0"
-                                    HorizontalAlignment="Right" Cursor="Hand" FontSize="13.5" FontWeight="SemiBold"/>
+                            <!--<Button Content="注册账号" Foreground="#1E5AA8" Background="Transparent" BorderThickness="0"
+                                    HorizontalAlignment="Right" Cursor="Hand" FontSize="13.5" FontWeight="SemiBold"
+                                    cal:Action.TargetWithoutContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                                    cal:Message.Attach="Register" ToolTip="仅管理员可注册新用户"/>-->
                         </Grid>
                         <!-- 分隔线 -->
                         <Border Height="1" Background="#E5E8EB" Margin="0,24,0,22"/>

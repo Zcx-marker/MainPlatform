@@ -14,13 +14,13 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Margin="14,10">
+    <Grid Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,10">
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
             <StackPanel>
                 <!-- 搜索参数 -->
                 <Border Style="{StaticResource SectionCard}" Margin="0,0,0,10">
@@ -167,12 +167,12 @@
             </StackPanel>
         </ScrollViewer>
 
-        <!-- 操作栏 -->
+        <!-- 操作栏 --><!--
         <Border Grid.Row="1" Background="#FFFFFF" CornerRadius="8" Padding="12,8" BorderBrush="#E5E8EB" BorderThickness="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>
                 <Button Style="{StaticResource ActionButton}" Content="保存参数"/>
             </StackPanel>
-        </Border>
+        </Border>-->
     </Grid>
 </UserControl>

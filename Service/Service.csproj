@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualService\ActualDispatcherService.cs" />
     <Compile Include="DbService\UserDataService.cs" />
+    <Compile Include="IBaseDispService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimulationService\LogSimulationService.cs" />
+    <Compile Include="SimulationService\LogSimulationDispatcherServiceService.cs" />
+    <Compile Include="SimulationService\SimDispatcherService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

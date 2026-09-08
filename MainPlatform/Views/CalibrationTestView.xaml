@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Margin="14,10">
+    <Grid Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
