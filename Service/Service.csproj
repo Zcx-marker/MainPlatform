@@ -44,6 +44,7 @@
     <Compile Include="ActualService\ActualDispatcherService.cs" />
     <Compile Include="DbService\UserDataService.cs" />
     <Compile Include="IBaseDispService.cs" />
+    <Compile Include="LeiSai\LTDMC.cs" />
     <Compile Include="MotionControl\Dmc3000Controller.cs" />
     <Compile Include="MotionControl\IMotionController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,7 +67,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="LeiSai\LTDMC.dll">
+      <Link>LTDMC.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="LeiSai\LTDMC.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

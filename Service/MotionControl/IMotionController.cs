@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Service.MotionControl
 {
@@ -352,11 +352,11 @@ namespace Service.MotionControl
         double GetDaOutput(ushort channel);
 
         /// <summary>
-        /// 读取 AD 输入采样值（可用于监视超声板卡功率反馈等模拟信号）。
+        /// 读取 AD 输入电压（可用于监视超声板卡功率反馈等模拟信号）。
         /// </summary>
         /// <param name="channel">AD 通道</param>
-        /// <returns>AD 采样值</returns>
-        ushort GetDaInput(ushort channel);
+        /// <returns>AD 输入电压，单位 V</returns>
+        double GetDaInput(ushort channel);
 
         #endregion
 
