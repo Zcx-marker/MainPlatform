@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d"
              d:DesignHeight="580" d:DesignWidth="900"
              Background="#F2F5F9">
@@ -93,8 +94,8 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <!-- 第一行 -->
-                    <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource CalibButton}" Content="水平锁紧" Margin="4"/>
-                    <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CalibButton}" Content="垂直锁紧" Margin="4"/>
+                    <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource CalibButton}" Margin="4" Content="{Binding HorizontalLockText}" Background="{Binding HorizontalLockBrush}" cal:Message.Attach="LockHorizontal"/>
+                    <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CalibButton}" Margin="4" Content="{Binding VerticalLockText}" Background="{Binding VerticalLockBrush}" cal:Message.Attach="LockVertical"/>
                     <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CalibButton}" Content="力校准" Margin="4"/>
                     <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource CalibButton}" Content="力测试" Margin="4"/>
                     <!-- 第二行 -->
