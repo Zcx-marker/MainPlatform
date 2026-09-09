@@ -87,44 +87,8 @@
             <Setter Property="BorderBrush" Value="#C0C8D0" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ComboBox">
-                        <Grid>
-                            <Border x:Name="Bd" Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
-                                <Grid>
-                                    <ContentPresenter x:Name="ContentSite" Margin="{TemplateBinding Padding}"
-                                                      VerticalAlignment="Center"
-                                                      Content="{TemplateBinding SelectionBoxItem}"
-                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                                      IsHitTestVisible="False" />
-                                    <TextBlock Text="&#xE70D;" FontFamily="Segoe MDL2 Assets" FontSize="12"
-                                               Foreground="#6B7A8C" HorizontalAlignment="Right"
-                                               VerticalAlignment="Center" Margin="0,0,12,0" IsHitTestVisible="False" />
-                                </Grid>
-                            </Border>
-                            <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}"
-                                   AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
-                                <Border Background="#FFFFFF" BorderBrush="#D5DCE3" BorderThickness="1"
-                                        CornerRadius="5" MinWidth="{TemplateBinding ActualWidth}"
-                                        MaxHeight="260" Margin="0,2,0,0">
-                                    <ScrollViewer>
-                                        <ItemsPresenter />
-                                    </ScrollViewer>
-                                </Border>
-                            </Popup>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                                <Setter TargetName="Bd" Property="BorderBrush" Value="#1E5AA8" />
-                                <Setter TargetName="Bd" Property="BorderThickness" Value="1.5" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource RegComboBoxItem}"/>
+            <!-- 不覆盖 Template：使用 HandyControl 默认 ComboBox 模板（已实测鼠标点击可正常弹出下拉） -->
         </Style>
         <Style x:Key="RegComboBoxItem" TargetType="ComboBoxItem">
             <Setter Property="Height" Value="34" />

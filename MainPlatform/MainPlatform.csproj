@@ -142,7 +142,7 @@
     <Compile Include="ViewModels\QhWeiSiQiuXingViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\XhHuXingViewModel.cs" />
-    <Compile Include="ViewModels\XhQhHandianViewModel.cs" />
+    <Compile Include="ViewModels\XhHandianViewModel.cs" />
     <Compile Include="ViewModels\XhWeiSiQiuXingViewModel.cs" />
     <Compile Include="Views\CalibrationTestView.xaml.cs">
       <DependentUpon>CalibrationTestView.xaml</DependentUpon>

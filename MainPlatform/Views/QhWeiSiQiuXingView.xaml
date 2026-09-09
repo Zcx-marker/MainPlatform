@@ -90,7 +90,7 @@
                             </StackPanel>
                             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                                 <TextBlock Style="{StaticResource ParamLabel}" Text="切球方向:" Width="84"/>
-                                <ComboBox Style="{StaticResource DarkComboBox}" SelectedIndex="0">
+                                <ComboBox Style="{StaticResource PComboBox}" ItemContainerStyle="{StaticResource PComboBoxItem}" SelectedIndex="0">
                                     <ComboBoxItem Content="X+"/>
                                     <ComboBoxItem Content="X-"/>
                                     <ComboBoxItem Content="Y+"/>

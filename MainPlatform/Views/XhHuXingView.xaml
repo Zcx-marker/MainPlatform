@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MainPlatform.Views.XhHuXingView"
+<UserControl x:Class="MainPlatform.Views.XhHuXingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -20,156 +20,142 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- 弧形参数主体 -->
-        <Border Grid.Row="0" Style="{StaticResource SectionCard}" Margin="0,0,0,10">
-            <StackPanel>
-                <StackPanel Style="{StaticResource SectionTitle}">
-                    <Border Style="{StaticResource SectionTitleBar}"/>
-                    <TextBlock Style="{StaticResource SectionTitleText}" Text="弧形参数"/>
+        <!-- 弧形参数：左列 8 项 + 右列 8 项（参考图布局） -->
+        <Border Grid.Row="0" Style="{StaticResource SectionCard}" Margin="0,0,0,8" Padding="16,14">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="64"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- 左列 -->
+                <StackPanel Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="线弧类型:" Width="96"/>
+                        <ComboBox Style="{StaticResource PComboBox}" ItemContainerStyle="{StaticResource PComboBoxItem}" Height="34" Width="80" SelectedIndex="0">
+                            <ComboBoxItem Content="标准"/>
+                            <ComboBoxItem Content="S弧"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="反转高度:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding ReverseHeight, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0~10000)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="反转角度:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding ReverseAngle, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="°"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(-45~89)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="线弧高度:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding ArcHeight, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0~5000)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="拉弧轨迹:" Width="96"/>
+                        <ComboBox Style="{StaticResource PComboBox}" ItemContainerStyle="{StaticResource PComboBoxItem}" Height="34" Width="80" SelectedIndex="0">
+                            <ComboBoxItem Content="圆弧"/>
+                            <ComboBoxItem Content="折线"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="回转距离:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding RotateDistance, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(±500)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <CheckBox Style="{StaticResource DarkCheckBox}" Content="弧顶线夹关闭" Width="132"
+                                  VerticalAlignment="Center" IsChecked="{Binding ArcTopClamp}"/>
+                        <TextBlock Text="(手动模式)" Foreground="#8A94A3" FontSize="12" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="动作阈值:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding ActionThreshold, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0~250)"/>
+                    </StackPanel>
                 </StackPanel>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
 
-                    <!-- 左列 -->
-                    <StackPanel Grid.Column="0" Margin="0,4,16,4">
-                        <!-- 线弧类型 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="线弧类型:" Width="96"/>
-                            <ComboBox Style="{StaticResource DarkComboBox}" SelectedIndex="0">
-                                <ComboBoxItem Content="标准"/>
-                                <ComboBoxItem Content="Q弧"/>
-                                <ComboBoxItem Content="低弧"/>
-                                <ComboBoxItem Content="自定义"/>
-                            </ComboBox>
-                        </StackPanel>
-                        <!-- 反转高度 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="反转高度:" Width="96"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="180"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(0~10000)"/>
-                        </StackPanel>
-                        <!-- 反转角度 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="反转角度:" Width="96"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="-45"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="°"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(-45~89)"/>
-                        </StackPanel>
-                        <!-- 线弧高度 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="线弧高度:" Width="96"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="150"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(0~5000)"/>
-                        </StackPanel>
-                        <!-- 拉弧轨迹 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="拉弧轨迹:" Width="96"/>
-                            <ComboBox Style="{StaticResource DarkComboBox}" SelectedIndex="0">
-                                <ComboBoxItem Content="圆弧"/>
-                                <ComboBoxItem Content="直线"/>
-                                <ComboBoxItem Content="抛物线"/>
-                            </ComboBox>
-                        </StackPanel>
-                        <!-- 回转距离 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="回转距离:" Width="96"/>
-                            <Button Style="{StaticResource SignButton}" Content="+"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="100" Margin="-1,0,0,0"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(±500)"/>
-                        </StackPanel>
-                        <!-- 弧顶线夹关闭 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <CheckBox Style="{StaticResource DarkCheckBox}" Content="弧顶线夹关闭" IsChecked="True" VerticalAlignment="Center"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(手动模式)" VerticalAlignment="Center" Margin="8,0,0,0"/>
-                        </StackPanel>
-                        <!-- 动作阈值 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="动作阈值:" Width="96"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="100"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(0~250)"/>
-                        </StackPanel>
+                <!-- 右列 -->
+                <StackPanel Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="AF 角度:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding AfAngle, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="°"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(-15~30)"/>
                     </StackPanel>
-
-                    <!-- 右列 -->
-                    <StackPanel Grid.Column="1" Margin="16,4,0,4">
-                        <!-- AF 角度 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="AF 角度:" Width="96"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="-15"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="°"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(-15~30)"/>
-                        </StackPanel>
-                        <!-- 反转距离 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="反转距离:" Width="96"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="200"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(0~10000)"/>
-                        </StackPanel>
-                        <!-- 弧高基准 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="弧高基准:" Width="96"/>
-                            <ComboBox Style="{StaticResource DarkComboBox}" SelectedIndex="0">
-                                <ComboBoxItem Content="固定弧高"/>
-                                <ComboBoxItem Content="相对焊点"/>
-                                <ComboBoxItem Content="自动"/>
-                            </ComboBox>
-                        </StackPanel>
-                        <!-- 弧高补偿 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="弧高补偿:" Width="96"/>
-                            <Button Style="{StaticResource SignButton}" Content="+"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="0" Margin="-1,0,0,0"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(±1000)"/>
-                        </StackPanel>
-                        <!-- 弧形角度 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="弧形角度:" Width="96"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="36"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="°"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(0~89)"/>
-                        </StackPanel>
-                        <!-- 预设焊点位置 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <CheckBox Style="{StaticResource DarkCheckBox}" Content="预设焊点位置" IsChecked="True" VerticalAlignment="Center"/>
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="对点" Width="60" Margin="8,0,0,0"/>
-                        </StackPanel>
-                        <!-- 高低落差 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="高低落差:" Width="96"/>
-                            <Button Style="{StaticResource SignButton}" Content="+"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="0" Margin="-1,0,0,0"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(±5000)"/>
-                        </StackPanel>
-                        <!-- 焊点间距 -->
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="焊点间距:" Width="96"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="150"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(100~5000)"/>
-                        </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="反转距离:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding ReverseDistance, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0~10000)"/>
                     </StackPanel>
-                </Grid>
-            </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="弧高基准:" Width="96"/>
+                        <ComboBox Style="{StaticResource PComboBox}" ItemContainerStyle="{StaticResource PComboBoxItem}" Height="34" Width="Auto" SelectedIndex="0">
+                            <ComboBoxItem Content="固定弧高"/>
+                            <ComboBoxItem Content="动态弧高"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="弧高补偿:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding ArcHeightComp, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(±1000)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="弧形角度:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding ArcAngle, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="°"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0~89)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <CheckBox Style="{StaticResource DarkCheckBox}" Content="预设焊点位置" Width="132"
+                                  VerticalAlignment="Center" IsChecked="{Binding PresetWeld}"/>
+                        <ComboBox Style="{StaticResource PComboBox}" ItemContainerStyle="{StaticResource PComboBoxItem}" Height="34" Width="80" SelectedIndex="0">
+                            <ComboBoxItem Content="对点"/>
+                            <ComboBoxItem Content="居中"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="高低落差:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding HeightDiff, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(±5000)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="焊点间距:" Width="96"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding WeldPitch, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(100~5000)"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
         </Border>
 
         <!-- 操作栏 -->
         <Border Grid.Row="1" Background="#FFFFFF" CornerRadius="8" Padding="12,8" BorderBrush="#E5E8EB" BorderThickness="1">
-            <Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>
-                    <Button Style="{StaticResource ActionButton}" Content="保存参数"/>
-                </StackPanel>
-            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>
+                <Button Style="{StaticResource ActionButton}" Content="保存参数"/>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

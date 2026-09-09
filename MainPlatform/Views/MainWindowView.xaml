@@ -216,7 +216,7 @@
                         <ItemsControl ItemsSource="{Binding Menus}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <UniformGrid Rows="{Binding MenuCount}" />
+                                    <UniformGrid Rows="{Binding MenuCount}" HorizontalAlignment="Stretch"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>

@@ -44,7 +44,7 @@
           "key": "XhHandianCS",
           "displayName": "焊点参数",
           "icon": "list",
-          "viewModel": "MainPlatform.ViewModels.XhQhHandianViewModel"
+          "viewModel": "MainPlatform.ViewModels.XhHandianViewModel"
         },
         {
           "key": "XhHuXingCS",

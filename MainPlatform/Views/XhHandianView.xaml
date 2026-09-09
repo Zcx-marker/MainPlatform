@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MainPlatform.Views.XhQhHandianView"
+<UserControl x:Class="MainPlatform.Views.XhHandianView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -17,142 +17,177 @@
     <Grid Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- 排线设置 -->
-        <Border Grid.Row="0" Style="{StaticResource SectionCard}" Margin="0,0,0,10">
-            <StackPanel>
-                <StackPanel Style="{StaticResource SectionTitle}">
-                    <Border Style="{StaticResource SectionTitleBar}"/>
-                    <TextBlock Style="{StaticResource SectionTitleText}" Text="排线设置"/>
-                </StackPanel>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <!-- 焊点数 -->
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Style="{StaticResource ParamLabel}" Text="焊点数:" Width="76"/>
-                        <TextBox Style="{StaticResource ParamInput}" Text="2"/>
-                        <TextBlock Style="{StaticResource ParamRange}" Text="(1-27)"/>
-                    </StackPanel>
-                    <!-- 排线线数 -->
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Style="{StaticResource ParamLabel}" Text="排线线数:" Width="76"/>
-                        <TextBox Style="{StaticResource ParamInput}" Text="5"/>
-                        <TextBlock Style="{StaticResource ParamRange}" Text="(1-20)"/>
-                    </StackPanel>
-                    <!-- 排线间距 -->
-                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Style="{StaticResource ParamLabel}" Text="排线间距:" Width="76"/>
-                        <TextBox Style="{StaticResource ParamInput}" Text="200"/>
-                        <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
-                        <TextBlock Style="{StaticResource ParamRange}" Text="(30-1000)"/>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
-        </Border>
-
-        <!-- 焊点参数 -->
-        <Border Grid.Row="1" Style="{StaticResource SectionCard}" Margin="0,0,0,10">
-            <StackPanel>
-                <Grid Margin="0,0,0,12">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Style="{StaticResource SectionTitle}" Grid.Column="0">
-                        <Border Style="{StaticResource SectionTitleBar}"/>
-                        <TextBlock Style="{StaticResource SectionTitleText}" Text="焊点参数"/>
-                    </StackPanel>
-                    <!-- 焊点导航 -->
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Style="{StaticResource NavArrowButton}" Content="←"/>
-                        <Border Background="#FFFFFF" BorderBrush="#C0C8D0" BorderThickness="1" CornerRadius="6"
-                                Height="36" Width="72" Margin="8,0">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="第 " Foreground="#6B7A8C" FontSize="13" VerticalAlignment="Center"/>
-                                <TextBlock Text="1" Foreground="#1E5AA8" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
-                                <TextBlock Text=" 焊点" Foreground="#6B7A8C" FontSize="13" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Border>
-                        <Button Style="{StaticResource NavArrowButton}" Content="→"/>
-                    </StackPanel>
-                    <!-- 两段焊接 -->
-                    <CheckBox Grid.Column="2" Style="{StaticResource DarkCheckBox}" Content="两段焊接" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                </Grid>
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <!-- 左列 -->
-                    <StackPanel Grid.Column="0">
-                        <StackPanel Orientation="Horizontal" Margin="0,4,0,4">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="焊接压力:" Width="84"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="18"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="g"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(5-150)"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,4,0,4">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="焊接超声:" Width="84"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="120"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="‰"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(0-1000)"/>
-                        </StackPanel>
-                    </StackPanel>
-                    <!-- 右列 -->
-                    <StackPanel Grid.Column="1">
-                        <StackPanel Orientation="Horizontal" Margin="0,4,0,4">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="焊接时间:" Width="84"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="100"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="ms"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(0-1000)"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,4,0,4">
-                            <TextBlock Style="{StaticResource ParamLabel}" Text="渐进时间:" Width="84"/>
-                            <TextBox Style="{StaticResource ParamInput}" Text="5"/>
-                            <TextBlock Style="{StaticResource ParamUnit}" Text="ms"/>
-                            <TextBlock Style="{StaticResource ParamRange}" Text="(0-100)"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
-        </Border>
-
-        <!-- 变形控制 -->
-        <Border Grid.Row="2" Style="{StaticResource SectionCard}" Margin="0,0,0,10">
-            <StackPanel>
-                <StackPanel Style="{StaticResource SectionTitle}">
-                    <Border Style="{StaticResource SectionTitleBar}"/>
-                    <TextBlock Style="{StaticResource SectionTitleText}" Text="变形控制"/>
-                </StackPanel>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="0" Style="{StaticResource DarkCheckBox}" Content="变形超限报警" Margin="10,4"/>
-                    <CheckBox Grid.Column="1" Style="{StaticResource DarkCheckBox}" Content="变形控制使能" Margin="10,4"/>
-                </Grid>
-            </StackPanel>
-        </Border>
-
-        <!-- 操作栏 -->
-        <Border Grid.Row="3" Background="#FFFFFF" CornerRadius="8" Padding="12,8" BorderBrush="#E5E8EB" BorderThickness="1">
+        <!-- Row0: 焊点数 + 排线线数 + 排线间距（参考图第一行） -->
+        <Border Grid.Row="0" Style="{StaticResource SectionCard}" Margin="0,0,0,8" Padding="16,10">
             <Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>
-                    <Button Style="{StaticResource ActionButton}" Content="保存参数"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!-- 焊点数 -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource ParamLabel}" Text="焊点数:" Width="76"/>
+                    <TextBox Style="{StaticResource ParamInput}" Width="66"
+                             Text="{Binding WeldCount, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{StaticResource ParamRange}" Text="(1-27)"/>
+                </StackPanel>
+                <!-- 排线线数 -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource ParamLabel}" Text="排线线数:" Width="88"/>
+                    <TextBox Style="{StaticResource ParamInput}" Width="66"
+                             Text="{Binding WireCount, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{StaticResource ParamRange}" Text="(1-20)"/>
+                </StackPanel>
+                <!-- 排线间距 -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource ParamLabel}" Text="排线间距:" Width="88"/>
+                    <TextBox Style="{StaticResource ParamInput}" Width="66"
+                             Text="{Binding WirePitch, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{StaticResource ParamUnit}" Text="um"/>
+                    <TextBlock Style="{StaticResource ParamRange}" Text="(30-1000)"/>
                 </StackPanel>
             </Grid>
+        </Border>
+
+        <!-- Row1: 焊点导航 + 两段焊接（参考图第二行） -->
+        <Border Grid.Row="1" Style="{StaticResource SectionCard}" Margin="0,0,0,8" Padding="16,6">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Style="{StaticResource NavArrowButton}" Content="←"/>
+                    <Border Background="#FFFFFF" BorderBrush="#C0C8D0" BorderThickness="1" CornerRadius="6"
+                            Height="36" Width="84" Margin="8,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="第 " Foreground="#6B7A8C" FontSize="13" VerticalAlignment="Center"/>
+                            <TextBlock Text="1" Foreground="#1E5AA8" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text=" 焊点" Foreground="#6B7A8C" FontSize="13" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <Button Style="{StaticResource NavArrowButton}" Content="→"/>
+                </StackPanel>
+                <CheckBox Style="{StaticResource DarkCheckBox}" Content="两段焊接"
+                          HorizontalAlignment="Right" VerticalAlignment="Center"
+                          IsChecked="{Binding IsTwoStage}"/>
+            </Grid>
+        </Border>
+
+        <!-- Row2: 焊接参数（参考图第三行：两段焊接未勾选时单列，勾选后两列；单位与范围分开） -->
+        <Border Grid.Row="2" Style="{StaticResource SectionCard}" Margin="0,0,0,8" Padding="16,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="64"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- 左列：第一段焊接 -->
+                <StackPanel Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="焊接压力:" Width="88"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding WeldPressure1, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="g"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(5-150)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="焊接超声:" Width="88"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding WeldUltrasonic1, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="‰"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0-1000)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="焊接时间:" Width="88"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding WeldTime1, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="ms"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0-1000)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="渐进时间:" Width="88"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding WeldRamp1, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="ms"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0-100)"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- 右列：第二段焊接（两段焊接勾选后显示） -->
+                <StackPanel Grid.Column="2" Visibility="{Binding SecondStageVisibility}">
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="焊接压力:" Width="88"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding WeldPressure2, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="g"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(5-150)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="焊接超声:" Width="88"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding WeldUltrasonic2, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="‰"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0-1000)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="焊接时间:" Width="88"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding WeldTime2, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="ms"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0-1000)"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,8">
+                        <TextBlock Style="{StaticResource ParamLabel}" Text="渐进时间:" Width="88"/>
+                        <TextBox Style="{StaticResource ParamInput}" Width="66"
+                                 Text="{Binding WeldRamp2, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{StaticResource ParamUnit}" Text="ms"/>
+                        <TextBlock Style="{StaticResource ParamRange}" Text="(0-100)"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Row3: 变形控制（报警/上限/下限 一行，使能/最短时间/阈值 一行） -->
+        <Border Grid.Row="3" Style="{StaticResource SectionCard}" Margin="0,0,0,8" Padding="16,10">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,2,0,6">
+                    <CheckBox Style="{StaticResource DarkCheckBox}" Content="变形超限报警" Width="176"
+                              VerticalAlignment="Center" IsChecked="{Binding DeformAlarm}"/>
+                    <TextBlock Style="{StaticResource ParamLabel}" Text="上限:" Width="56"/>
+                    <TextBox Style="{StaticResource ParamInput}" Width="66"
+                             Text="{Binding AlarmUpper, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{StaticResource ParamRange}" Text="um(0-100)"/>
+                    <TextBlock Style="{StaticResource ParamLabel}" Text="下限:" Width="56" Margin="28,0,0,0"/>
+                    <TextBox Style="{StaticResource ParamInput}" Width="66"
+                             Text="{Binding AlarmLower, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{StaticResource ParamRange}" Text="um(0-100)"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,6,0,2">
+                    <CheckBox Style="{StaticResource DarkCheckBox}" Content="变形控制使能" Width="176"
+                              VerticalAlignment="Center" IsChecked="{Binding DeformEnable}"/>
+                    <TextBlock Style="{StaticResource ParamLabel}" Text="最短时间:" Width="70"/>
+                    <TextBox Style="{StaticResource ParamInput}" Width="66"
+                             Text="{Binding DeformMinTime, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{StaticResource ParamRange}" Text="ms(30-500)"/>
+                    <TextBlock Style="{StaticResource ParamLabel}" Text="阈值:" Width="56" Margin="28,0,0,0"/>
+                    <TextBox Style="{StaticResource ParamInput}" Width="66"
+                             Text="{Binding DeformThreshold, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{StaticResource ParamRange}" Text="um(5-100)"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Row4: 操作栏 -->
+        <Border Grid.Row="4" Background="#FFFFFF" CornerRadius="8" Padding="12,8" BorderBrush="#E5E8EB" BorderThickness="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource GhostButton}" Content="恢复默认" Margin="0,0,8,0"/>
+                <Button Style="{StaticResource ActionButton}" Content="保存参数"/>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

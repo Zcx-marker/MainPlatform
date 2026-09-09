@@ -52,7 +52,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
                         <TextBlock Style="{StaticResource ParamLabel}" Text="留尾模式:" Width="76"/>
-                        <ComboBox Style="{StaticResource DarkComboBox}" SelectedIndex="0">
+                        <ComboBox Style="{StaticResource PComboBox}" ItemContainerStyle="{StaticResource PComboBoxItem}" SelectedIndex="0">
                             <ComboBoxItem Content="线夹"/>
                             <ComboBoxItem Content="气流"/>
                             <ComboBoxItem Content="关闭"/>

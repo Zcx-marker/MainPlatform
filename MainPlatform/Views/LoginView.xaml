@@ -189,7 +189,8 @@
                                   HorizontalAlignment="Right" VerticalAlignment="Center"
                                   Margin="0,0,12,0" IsHitTestVisible="False"/>
                             <Popup x:Name="PART_Popup" AllowsTransparency="True"
-                                   IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" StaysOpen="False">
+                                   IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" StaysOpen="False"
+                                   PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}">
                                 <Border MinWidth="{TemplateBinding ActualWidth}"
                                         MaxHeight="{TemplateBinding MaxDropDownHeight}"
                                         Background="#FFFFFF" BorderBrush="#C0C8D0"
