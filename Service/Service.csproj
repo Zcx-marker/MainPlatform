@@ -64,6 +64,9 @@
     <Compile Include="LeiSai\LTDMC.cs" />
     <Compile Include="MotionControl\Dmc3000Controller.cs" />
     <Compile Include="MotionControl\ILock.cs" />
+    <Compile Include="MotionControl\IForce.cs" />
+    <Compile Include="ActualService\ActualForceService.cs" />
+    <Compile Include="SimulationService\SimForceService.cs" />
     <Compile Include="MotionControl\IMotionController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimulationService\LogSimulationDispatcherService.cs" />
