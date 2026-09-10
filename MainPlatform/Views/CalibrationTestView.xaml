@@ -99,7 +99,7 @@
                     <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CalibButton}" Content="力校准" Margin="4" cal:Message.Attach="ForceCalibrate"/>
                     <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource CalibButton}" Content="力测试" Margin="4" cal:Message.Attach="ForceTest"/>
                     <!-- 第二行 -->
-                    <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource CalibButton}" Content="超声校准" Margin="4"/>
+                    <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource CalibButton}" Content="超声校准" Margin="4" cal:Message.Attach="UltraCalibrate"/>
                     <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource CalibButton}" Content="初始化" Margin="4"/>
                     <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource CalibButton}" Content="序列号" Margin="4"/>
                 </Grid>
@@ -116,8 +116,8 @@
                             <TextBlock Text="{Binding ForceCalibrationText}" Foreground="#4B5563" FontSize="12" Margin="8,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <Ellipse Width="8" Height="8" Fill="#2FA84F" VerticalAlignment="Center"/>
-                            <TextBlock Text="超声校准: 已完成" Foreground="#4B5563" FontSize="12" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                            <Ellipse Width="8" Height="8" Fill="{Binding UltraCalibrationBrush}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding UltraCalibrationText}" Foreground="#4B5563" FontSize="12" Margin="8,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
                             <Ellipse Width="8" Height="8" Fill="#F0A500" VerticalAlignment="Center"/>

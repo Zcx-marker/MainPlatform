@@ -45,6 +45,7 @@ namespace MainPlatform
                 _container.Singleton<IBaseDispService, SimDispatcherService>();
                 _container.Singleton<ILock, SimLockService>();
                 _container.Singleton<IForce, SimForceService>();
+                _container.Singleton<IUltra, SimUltraService>();
                 _container.Instance<IMotionController>(new SimController());
             }
             else
@@ -52,6 +53,7 @@ namespace MainPlatform
                 _container.Singleton<IBaseDispService, ActualDispatcherService>();
                 _container.Singleton<ILock, ActualLockService>();
                 _container.Singleton<IForce, ActualForceService>();
+                _container.Singleton<IUltra, ActualUltraService>();
                 _container.Instance<IMotionController>(new Dmc3000Controller(0));
             }
         }
