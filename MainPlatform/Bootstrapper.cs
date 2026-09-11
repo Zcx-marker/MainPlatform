@@ -93,6 +93,8 @@ namespace MainPlatform
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
+            // 启动即初始化板卡（真实/模拟由 DispatcherService 按 IsSimulationMode 分流）
+            IoC.Get<IBaseDispService>().Initialize();
             DisplayRootViewForAsync<LoginViewModel>();
         }
     }

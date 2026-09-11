@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using Caliburn.Micro;
+using Service;
 using Service.MotionControl;
 
 namespace MainPlatform.ViewModels
@@ -16,6 +17,7 @@ namespace MainPlatform.ViewModels
         private readonly ILock _lockService;
         private readonly IForce _forceService;
         private readonly IUltra _ultraService;
+        private readonly IBaseDispService _dispService;
 
         private bool _isHorizontalLocked;
         private bool _isVerticalLocked;
@@ -31,6 +33,9 @@ namespace MainPlatform.ViewModels
         private string _ultraCalibrationText = "超声校准: 未校准";
         private Brush _ultraCalibrationBrush = ForcePendingBrush;
 
+        private string _initText = "初始化";
+        private Brush _initBrush = ForcePendingBrush;
+
         /// <summary>力测试默认目标力（g）</summary>
         private const double DefaultTestForceG = 80.0;
 
@@ -41,15 +46,17 @@ namespace MainPlatform.ViewModels
         private static readonly Brush ForceFailBrush = new SolidColorBrush(Color.FromRgb(0xDC, 0x26, 0x26));
 
         public CalibrationTestViewModel()
-            : this(IoC.Get<ILock>(), IoC.Get<IForce>(), IoC.Get<IUltra>())
+            : this(IoC.Get<ILock>(), IoC.Get<IForce>(), IoC.Get<IUltra>(), IoC.Get<IBaseDispService>())
         {
         }
 
-        public CalibrationTestViewModel(ILock lockService, IForce forceService, IUltra ultraService)
+        public CalibrationTestViewModel(ILock lockService, IForce forceService, IUltra ultraService, IBaseDispService dispService)
         {
             _lockService = lockService;
             _forceService = forceService;
             _ultraService = ultraService;
+            _dispService = dispService;
+            UpdateInitState();
         }
 
         #region 水平/垂直紧锁
@@ -266,6 +273,57 @@ namespace MainPlatform.ViewModels
                 MessageBox.Show("超声校准失败，请检查板卡与超声发生器接线。", "超声校准",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        #endregion
+
+        #region 设备初始化
+
+        public string InitText
+        {
+            get { return _initText; }
+            set { _initText = value; NotifyOfPropertyChange(() => InitText); }
+        }
+
+        public Brush InitBrush
+        {
+            get { return _initBrush; }
+            set { _initBrush = value; NotifyOfPropertyChange(() => InitBrush); }
+        }
+
+        /// <summary>
+        /// 手动重新初始化板卡（复用启动链路 IBaseDispService.Initialize），完成后更新按钮状态。
+        /// </summary>
+        public async void Initialize()
+        {
+            InitText = "初始化中...";
+            InitBrush = ForcePendingBrush;
+
+            await Task.Run(() => _dispService.Initialize());
+
+            if (_dispService.IsInitialized)
+            {
+                InitText = "已初始化";
+                InitBrush = ForceDoneBrush;
+                MessageBox.Show("初始化成功。", "初始化",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                InitText = "初始化失败";
+                InitBrush = ForceFailBrush;
+                MessageBox.Show("初始化失败，请检查板卡与驱动。", "初始化",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        /// <summary>
+        /// 根据启动时初始化结果设置按钮初始状态。
+        /// </summary>
+        private void UpdateInitState()
+        {
+            InitText = _dispService.IsInitialized ? "已初始化" : "初始化";
+            InitBrush = _dispService.IsInitialized ? ForceDoneBrush : ForcePendingBrush;
         }
 
         #endregion
